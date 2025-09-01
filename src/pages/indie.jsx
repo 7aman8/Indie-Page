@@ -7,7 +7,7 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
 // Socials
 import XIcon from '@mui/icons-material/X';
-
+import GithubIcon from '@mui/icons-material/Github';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
