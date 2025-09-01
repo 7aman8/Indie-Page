@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+*{
+    /* background-color: #F8EEDF; */
+    font-family: "Rubik";
+}
+
+#home{
+    background-color: #F2EFE7;
+}
