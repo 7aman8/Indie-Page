@@ -64,7 +64,7 @@ function Home(){
 
                 {/* Socials */}
                 <div className="flex flex-row gap-10 mt-8 text-gray-600">
-                    <a href="https://x.com/Abdulrahma80860/" target="_blank" rel="noopener noreferrer"
+                    <a href="https://x.com/ArjBuilds/" target="_blank" rel="noopener noreferrer"
                     className="hover:scale-110 transition-transform duration-200"
                     >
                         <X className="w-10 h-10" sx={{ fontSize: 30 }} />
