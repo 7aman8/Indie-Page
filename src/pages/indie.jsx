@@ -21,7 +21,7 @@ const startups = [
     },
     {
         name: "Wordly",
-        description: "A word counter + AI enhancer",
+        description: "A open sourced word counter + AI enhancer",
         link: "https://github.com/7aman8/wordly",
         logo: Wordly 
     },
