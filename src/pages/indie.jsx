@@ -1,6 +1,7 @@
 import Profile from "/Profile.png";
 
 import Mahali from "../assets/Logo/Mahali.png";
+import Wordly from "../assets/Logo/Wordly.png";
 
 import PaymentsIcon from '@mui/icons-material/Payments';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
@@ -17,6 +18,12 @@ const startups = [
         description: "A Talabat for home business owners! 🚚",
         link: "https://mahali.food",
         logo: Mahali 
+    },
+    {
+        name: "Wordly",
+        description: "A word counter + AI enhancer",
+        link: "https://github.com/7aman8/wordly",
+        logo: Wordly 
     },
     // {
     //     name: "Startup 2",
@@ -113,7 +120,7 @@ function Home(){
                     </div>
 
                     {/* Description */}
-                    <p className="text-zinc-700/80 mt-2 text-sm lg:text-base">{startup.description}</p>
+                    <p className="text-zinc-700/80 mt-2 text-sm lg:text-base text-wrap ">{startup.description}</p>
                     </a>
                 ))}
             </div>
