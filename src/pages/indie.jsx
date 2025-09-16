@@ -72,22 +72,22 @@ function Home(){
                 {/* Socials */}
                 <div className="flex flex-row gap-10 mt-8 text-gray-600">
                     <a href="https://x.com/ArjBuilds/" target="_blank" rel="noopener noreferrer"
-                    className="hover:scale-110 transition-transform duration-200"
+                    className="hover:scale-110 transition-transform duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                     >
                         <X className="w-10 h-10" sx={{ fontSize: 30 }} />
                     </a>
                     <a href="https://github.com/7aman8" target="_blank" rel="noopener noreferrer"
-                    className="hover:scale-110 transition-transform duration-200"
+                    className="hover:scale-110 transition-transform duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                     >
                         <GitHub className="w-10 h-10" sx={{ fontSize: 30 }} />
                     </a>
                     <a href="https://www.instagram.com/arj08._/" target="_blank" rel="noopener noreferrer"
-                    className="hover:scale-110 transition-transform duration-200"
+                    className="hover:scale-110 transition-transform duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                     >
                         <Instagram className="w-10 h-10" sx={{ fontSize: 30 }} />
                     </a>
                     <a href="https://www.linkedin.com/in/arj11/" target="_blank" rel="noopener noreferrer"
-                    className="hover:scale-110 transition-transform duration-200"
+                    className="hover:scale-110 transition-transform duration-200 bg-transparent hover:bg-transparent focus:bg-transparent active:bg-transparent"
                     >
                         <LinkedInIcon className="w-10 h-10" sx={{ fontSize: 30 }} />
                     </a>
