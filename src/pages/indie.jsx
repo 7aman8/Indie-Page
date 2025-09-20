@@ -105,7 +105,7 @@ function Home(){
             <hr className="block sm:hidden text-gray-400 mx-8" />
 
             {/* StartUps Page */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 sm:translate-x-25 lg:translate-x-40 items-center auto-rows-min">
+            <div className="grid grid-cols-1 lg:grid-cols-2 mx-5 sm:mx-0 gap-8 mt-10 sm:translate-x-25 lg:translate-x-40 mb-10 items-center auto-rows-min">
                 {startups.map((startup, index) => (
                     <a
                     key={index}
