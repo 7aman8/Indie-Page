@@ -25,6 +25,12 @@ const startups = [
         link: "https://github.com/7aman8/wordly",
         logo: Wordly 
     },
+    {
+        name: "Promptly",
+        description: "A smart teleprompter that works everywhere",
+        link: "https://promptly.arjbuilds.dev",
+        logo: None 
+    },
     // {
     //     name: "Startup 2",
     //     description: "This is a description for Startup 2",
