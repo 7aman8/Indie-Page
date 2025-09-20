@@ -29,7 +29,7 @@ const startups = [
         name: "Promptly",
         description: "A smart teleprompter that works everywhere",
         link: "https://promptly.arjbuilds.dev",
-        logo: None 
+        logo: null 
     },
     // {
     //     name: "Startup 2",
