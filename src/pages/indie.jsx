@@ -2,6 +2,7 @@ import Profile from "/Profile.png";
 
 import Mahali from "../assets/Logo/Mahali.png";
 import Wordly from "../assets/Logo/Wordly.png";
+import Promptly from "../assets/Logo/Promptly.png";
 
 import PaymentsIcon from '@mui/icons-material/Payments';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
@@ -29,7 +30,7 @@ const startups = [
         name: "Promptly",
         description: "A smart teleprompter that works everywhere",
         link: "https://promptly.arjbuilds.dev",
-        logo: null 
+        logo: Promptly 
     },
     // {
     //     name: "Startup 2",
