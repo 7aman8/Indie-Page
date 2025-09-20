@@ -104,14 +104,13 @@ function Home(){
             <hr className="block sm:hidden text-gray-400 mx-8" />
 
             {/* StartUps Page */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 m-10 sm:translate-x-25 ">
-
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-10 sm:translate-x-25 lg:translate-x-40 items-center auto-rows-min">
                 {startups.map((startup, index) => (
                     <a
                     key={index}
                     href={startup.link}
                     target="_blank"
-                    className="group h-25 rounded-box cursor-pointer p-5 duration-200 hover:scale-[1.02] hover:bg-zinc-100 
+                    className="group rounded-box cursor-pointer p-5 duration-200 hover:scale-[1.02] hover:bg-zinc-100 
                     shadow-sm bg-white rounded-2xl
                     "
                     >
@@ -134,5 +133,6 @@ function Home(){
         </div>
     )
 }
+
 
 export default Home;
