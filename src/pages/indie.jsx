@@ -1,4 +1,5 @@
-import Profile from "/Profile.png";
+// import Profile from "/Profile.jpeg";
+import Profile from "/Profi.png";
 
 import Mahali from "../assets/Logo/Mahali.png";
 import Wordly from "../assets/Logo/Wordly.png";
@@ -105,7 +106,7 @@ function Home(){
             <hr className="block sm:hidden text-gray-400 mx-8" />
 
             {/* StartUps Page */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 xxl:grid-cols-3 mx-5 sm:mx-0 gap-8 mt-10 sm:translate-x-25 lg:translate-x-40 mb-10 items-center auto-rows-min">
+            <div className="grid grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 mx-6 sm:mx-0 gap-8 mt-10 sm:translate-x-25 lg:translate-x-40 mb-10 items-center auto-rows-min">    
                 {startups.map((startup, index) => (
                     <a
                     key={index}
