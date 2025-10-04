@@ -4,6 +4,7 @@ import Profile from "/Profi.png";
 import Mahali from "../assets/Logo/Mahali.png";
 import Wordly from "../assets/Logo/Wordly.png";
 import Promptly from "../assets/Logo/Promptly.png";
+import Shareboard from "../assets/Logo/Shareboard.png";
 
 import PaymentsIcon from '@mui/icons-material/Payments';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
@@ -32,6 +33,12 @@ const startups = [
         description: "A smart teleprompter that works everywhere",
         link: "https://promptly.arjbuilds.dev",
         logo: Promptly 
+    },
+    {
+        name: "Shareboard",
+        description: "Your Shared Clipboard, Instantly Synced",
+        link: "https://shareboard.arjbuilds.dev",
+        logo: Shareboard 
     },
     // {
     //     name: "Startup 2",
