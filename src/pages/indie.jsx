@@ -5,6 +5,7 @@ import Mahali from "../assets/Logo/Mahali.png";
 import Wordly from "../assets/Logo/Wordly.png";
 import Promptly from "../assets/Logo/Promptly.png";
 import Shareboard from "../assets/Logo/Shareboard.png";
+import Meteor from "../assets/Logo/Meteor.png";
 
 import PaymentsIcon from '@mui/icons-material/Payments';
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
@@ -39,6 +40,12 @@ const startups = [
         description: "Your Shared Clipboard, Instantly Synced",
         link: "https://shareboard.arjbuilds.dev",
         logo: Shareboard 
+    },
+    {
+        name: "Project Meteor",
+        description: "nteractive asteroid impact visualization simulator for NSSA",
+        link: "https://meteor.arjbuilds.dev",
+        logo: Meteor 
     },
     // {
     //     name: "Startup 2",
