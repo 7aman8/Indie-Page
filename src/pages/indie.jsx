@@ -38,7 +38,7 @@ const startups = [
     {
         name: "Shareboard",
         description: "Your Shared Clipboard, Instantly Synced",
-        link: "https://shareboard.arjbuilds.dev",
+        link: "https://shareboard.space",
         logo: Shareboard 
     },
     {
