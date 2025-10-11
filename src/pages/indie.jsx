@@ -43,7 +43,7 @@ const startups = [
     },
     {
         name: "Project Meteor",
-        description: "nteractive asteroid impact visualization simulator for NSSA",
+        description: "Interactive asteroid impact visualization simulator for NSSA",
         link: "https://meteor.arjbuilds.dev",
         logo: Meteor 
     },
