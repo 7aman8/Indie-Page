@@ -3,20 +3,23 @@
 @font-face{
 
     font-family: Geist;
-    src: url("../src/assets/fonts/Geist-Regular.ttf");
+    src: url("../assets/fonts/Geist-Regular.ttf");
 
 }
 
 
+@font-face{
+
+    font-family: Gilroy;
+    src: url("../assets/fonts/Gilroy-Bold.ttf");
+
+}
+
 *{
     /* background-color: #F8EEDF; */
-    font-family: "Rubik";
+    /* font-family: "Rubik"; */
 }
 
 #home{
     background-color: #F2EFE7;
-}
-
-@theme{
-    --font-geist: Geist, "sans-serif";
 }

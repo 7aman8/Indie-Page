@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import Home from "./pages/Home/Home";
+import Indie from "./pages/indie"; 
 
 import { ReactLenis } from 'lenis/react'
 
@@ -22,6 +23,9 @@ function App() {
       >
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/indie" element={<Indie />} />
+          
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </ReactLenis>
     </BrowserRouter>

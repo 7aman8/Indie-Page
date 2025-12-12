@@ -1,5 +1,5 @@
 // import Profile from "/Profile.jpeg";
-import Profile from "/Profi.png";
+import Profile from "/favicon.png";
 
 import Mahali from "../assets/Logo/Mahali.png";
 import Wordly from "../assets/Logo/Wordly.png";
@@ -19,7 +19,7 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 const startups = [
     {
         name: "Mahali",
-        description: "A Talabat for home business owners! 🚚",
+        description: "A Talabat for Indie business owners! 🚚",
         link: "https://mahali.food",
         logo: Mahali 
     },
@@ -57,7 +57,7 @@ const startups = [
 
 //#EEEEEE is marc's lou bg
 
-function Home(){
+function Indie(){
 
     return(
         <div className="flex flex-col sm:flex-row gap-10 text-[#2b2b28] bg-[#F2EFE7]/70 min-h-screen w-full overflow-x-hidden">
@@ -151,4 +151,4 @@ function Home(){
 }
 
 
-export default Home;
+export default Indie;
