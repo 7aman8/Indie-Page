@@ -187,8 +187,9 @@ function MessageIcon({ className }) {
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="m20 15v7h-1v1h-17v-1h-1v-17h1v-1h9v2h-8v15h15v-6z" />
-      <path d="m23 1v8h-2v-4h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-2h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h-4v-2z" />
+      {/* Thickened version */}
+      <path d="M20 14v8h-1v1H2v-1H1V4h1V3h10v2H4v14h14v-5z" />
+      <path d="M23 1v9h-3V6h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-1v1h-2v-3h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1v-1h1V3h-3V1z" />
     </svg>
   );
 }
