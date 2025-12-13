@@ -9,12 +9,13 @@ function Hero() {
   const xRef = useRef(null);
   const linkedinRef = useRef(null);
   const businessRef = useRef(null);
-  const heroRef = useRef(null);
 
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-+=[]{}|;:'<>,.?/~`";
+  const heroRef = useRef(null);
+  const [hovered, setHovered] = useState(false);
 
   const navClass = "hero-animate hover:translate-x-1 hover:translate-y-1 hover:rotate-1 hover:text-red-500 transition-all duration-100 ease-in-out";
-
+  
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-+=[]{}|;:'<>,.?/~`";
   const scrambleText = (target, newText) => {
     let i = 0;
     gsap.to({}, { 
@@ -93,17 +94,25 @@ function Hero() {
         <div className="flex-grow flex flex-col items-center justify-center gap-10 md:block">
             <div className="relative w-64 h-80 mt-10 md:mt-0 md:w-auto md:h-auto md:absolute md:top-10 md:left-32 z-0">
                 
-                {/* Smiling Image (Hover) */}
+                {/* Talking Business Image */}
                 <img 
-                src="/Smiling.png" 
-                alt="Smiling IMAGE"
+                src="/Talking.webp" 
+                alt="Talking IMAGE"
                 // Mobile: absolute inset-0. Desktop: absolute w-150.
-                className="absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto opacity-0 transition-opacity duration-500 hover:opacity-90 z-10"
+                className={`absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto ${hovered ? "opacity-100" : "opacity-0"} transition-opacity duration-500 z-10`}
                 />
 
+                {/* Smiling Image (Hover) */}
+                <img 
+                src="/Smiling.webp" 
+                alt="Smiling IMAGE"
+                // Mobile: absolute inset-0. Desktop: absolute w-150.
+                className={`absolute inset-0 top-3 w-full h-full object-cover md:w-150 md:h-auto opacity-0 transition-opacity duration-500 hover:opacity-100 z-10`}
+                />
+                
                 {/* Portrait Image (Default) */}
                 <img 
-                src="/Portrait.png" 
+                src="/Portrait.webp" 
                 alt="Portrait IMAGE"
                 className="absolute inset-0 w-full h-full object-cover md:static md:w-150 md:h-auto opacity-100 transition-opacity duration-500 hover:opacity-0"
                 />
@@ -122,8 +131,8 @@ function Hero() {
                     <p>I build <span className='italic font-[Georgia]'>clean</span>, <span className='italic font-[Georgia]'>modern</span>, and <span className='italic font-[Georgia]'>engaging</span> web apps.</p>
                 </div>
 
-                <button className='hero-animate flex flex-row gap-2 border-b-3 text-red-700 text-3xl md:text-4xl font-bold w-fit pr-3 text-start items-center'>
-                    <span ref={businessRef} onMouseEnter={() => scrambleText(businessRef.current, "LET'S TALK BUSINESS.")} onMouseLeave={() => businessRef.current.textContent = "LET'S TALK BUSINESS."}>
+                <button className='hero-animate flex flex-row gap-2 border-b-3 border-red-700 text-red-700 text-3xl md:text-4xl font-bold w-fit pr-3 text-start items-center'>
+                    <span ref={businessRef} onMouseEnter={() => {scrambleText(businessRef.current, "LET'S TALK BUSINESS."); setHovered(true)}} onMouseLeave={() =>{ businessRef.current.textContent = "LET'S TALK BUSINESS."; setHovered(false)}}>
                         Let's Talk Business.
                     </span> <MessageIcon className="w-6 md:w-8" />
                 </button>
@@ -134,8 +143,11 @@ function Hero() {
 
         {/* --- 4. Bottom Bar --- */}
         <div className="w-full p-6 flex justify-between items-end text-black text-sm md:text-md font-geist uppercase md:absolute md:-bottom-3 z-50">
-            <div className="whitespace-nowrap">
-                <span className='text-red-600 font-bold'>BAHRAIN</span> <span>{localTime}</span>
+            <div className="whitespace-nowrap space-x-1">
+                <span className='text-red-600 font-bold hover:font-[Times New Roman]'>
+                    <a href="https://en.wikipedia.org/wiki/Bahrain">Bahrain</a>
+                </span> 
+                <span>{localTime}</span>
             </div>
 
             <div className="flex md:absolute md:justify-end md:mx-auto md:right-10 space-x-2 gap-1 text-black">

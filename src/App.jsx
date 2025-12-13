@@ -11,6 +11,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      {/* <FluidCursor /> */}
       <ReactLenis
         smooth={true}
         smoothTouch={false}
