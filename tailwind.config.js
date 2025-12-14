@@ -10,6 +10,7 @@ module.exports = {
         geist: ['Geist', 'sans-serif'],
         gilroy: ['Gilroy', 'sans-serif'],
         gsans: ['GSans', 'sans-serif'],
+        h: ['H', 'sans-serif'],
       },
     },
   },

@@ -26,6 +26,13 @@
 
 }
 
+@font-face{
+
+    font-family: H;
+    src: url("../assets/fonts/HelveticaNeue-Light.ttf");
+
+}
+
 *{
     /* background-color: #F8EEDF; */
     /* font-family: "Rubik"; */

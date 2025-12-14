@@ -73,7 +73,7 @@ const Footer = () => {
   const socialLinks = [
     { name: 'INSTAGRAM', url: 'https://instagram.com/arj08._' },
     { name: 'X', url: 'https://x.com/ArjBuilds' },
-    { name: 'LINKEDIN', url: 'https://linkedin.com/arj11' },
+    { name: 'LINKEDIN', url: 'https://linkedin.com/in/arj11' },
   ];
 
   // Shared Class for standard cards

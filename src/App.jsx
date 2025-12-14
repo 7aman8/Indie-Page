@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ReactLenis, useLenis } from 'lenis/react'
 import gsap from 'gsap'
@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Home from './pages/Home/Home'
 import Indie from './pages/indie'
+import Preloader from './components/Prelaoder'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -35,7 +36,12 @@ function LenisGSAPSync() {
 }
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
+    <>
+    {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+
     <BrowserRouter>
       <ReactLenis
         root
@@ -54,6 +60,7 @@ function App() {
         </div>
       </ReactLenis>
     </BrowserRouter>
+    </>
   )
 }
 
