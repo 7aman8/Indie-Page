@@ -19,6 +19,13 @@
 
 }
 
+@font-face{
+
+    font-family: GSans;
+    src: url("../assets/fonts/GeneralSans-Variable.ttf");
+
+}
+
 *{
     /* background-color: #F8EEDF; */
     /* font-family: "Rubik"; */

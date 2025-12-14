@@ -11,31 +11,36 @@ const About = () => {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       
-      // 1. Marquee Animation (Continuous loop)
-      const loops = gsap.utils.toArray('.marquee-text').map((line, i) => {
-        const links = line.querySelectorAll(".js-text");
-        return gsap.to(links, {
-          xPercent: -100,
-          repeat: -1,
-          duration: 15,
-          ease: "none",
-        });
-      });
-
-      // 2. Text Reveal Animation (Split line effect)
-      gsap.fromTo(".about-line", 
-        { y: 100, opacity: 0, rotateX: -45 },
+      // 1. Line-by-Line Text Reveal
+      const lines = gsap.utils.toArray('.bio-line');
+      gsap.fromTo(lines, 
+        { y: 100, opacity: 0, rotateX: -20 },
         {
           y: 0,
           opacity: 1,
           rotateX: 0,
           stagger: 0.1,
-          duration: 1,
+          duration: 1.2,
           ease: "power3.out",
           scrollTrigger: {
             trigger: textRef.current,
-            start: "top 80%", // Starts when top of text hits 80% of viewport height
+            start: "top 75%",
             toggleActions: "play none none reverse"
+          }
+        }
+      );
+
+      // 2. Stats Grid Fade In
+      gsap.fromTo(".stat-card",
+        { y: 50, opacity: 0 },
+        {
+          y: 0, 
+          opacity: 1, 
+          stagger: 0.1, 
+          duration: 1, 
+          scrollTrigger: {
+              trigger: ".stats-grid",
+              start: "top 85%"
           }
         }
       );
@@ -46,61 +51,64 @@ const About = () => {
   }, []);
 
   return (
-    <section ref={containerRef} className="relative w-full py-20 md:py-32 overflow-hidden bg-zinc-950 rounded-t-[3rem] -mt-10 border-t border-white/10">
+    <section ref={containerRef} className="relative w-full py-24 md:py-40 px-6 md:px-12 bg-[#09090b] text-white">
       
-      {/* Background Grid Pattern (Subtle) */}
-      <div className="absolute inset-0 z-0 opacity-[0.05]" 
-           style={{ backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)', backgroundSize: '20px 20px' }}>
-      </div>
-
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="max-w-7xl mx-auto">
         
-        {/* Section Label */}
-        <div className="mb-10 md:mb-20 overflow-hidden">
-             <h2 className="text-sm font-geist uppercase tracking-widest text-zinc-500 mb-2">/ Who I Am</h2>
-             <div className="w-full h-[1px] bg-zinc-800"></div>
+        {/* Label */}
+        <div className="mb-12 flex items-center gap-4 opacity-50">
+            <span className="w-2 h-2 rounded-full bg-red-600"></span>
+            <span className="font-mono text-sm tracking-widest uppercase">The Context</span>
         </div>
 
-        {/* Huge Scrolling Marquee */}
-        <div className="w-full overflow-hidden flex whitespace-nowrap mb-16 select-none opacity-20 pointer-events-none">
-            <div className="marquee-text flex gap-8 text-[10vh] md:text-[15vh] font-gilroy font-bold uppercase leading-none text-transparent stroke-text">
-                {[...Array(4)].map((_, i) => (
-                    <span key={i} className="js-text flex gap-8">
-                        <span>Creative</span>
-                        <span className="text-red-700">Developer</span>
-                        <span>Designer</span>
-                        <span className="text-zinc-700">—</span>
-                    </span>
-                ))}
+        {/* Main Statement */}
+        <div ref={textRef} className="mb-24">
+            <h2 className="text-3xl md:text-6xl lg:text-7xl font-gilroy font-bold leading-[1.1] tracking-tight">
+                <div className="overflow-hidden"><div className="bio-line">I don't just write code.</div></div>
+                <div className="overflow-hidden"><div className="bio-line text-zinc-500">I engineer <span className="text-white italic font-[Georgia]">digital clarity</span></div></div>
+                <div className="overflow-hidden"><div className="bio-line">in a chaotic world.</div></div>
+            </h2>
+            <div className="mt-8 max-w-2xl overflow-hidden">
+                <p className="bio-line text-lg md:text-xl text-zinc-400 font-geist leading-relaxed">
+                    Based in Bahrain, I operate at the intersection of design systems and full-stack architecture. My goal is simple: build applications that feel inevitable.
+                </p>
             </div>
         </div>
 
-        {/* Bio Text */}
-        <div ref={textRef} className="max-w-4xl mx-auto">
-            <h3 className="text-3xl md:text-5xl lg:text-6xl font-gilroy font-bold leading-tight">
-                <div className="overflow-hidden"><div className="about-line">I craft digital experiences</div></div>
-                <div className="overflow-hidden"><div className="about-line">that blend <span className="text-red-600">technical depth</span></div></div>
-                <div className="overflow-hidden"><div className="about-line">with <span className="italic font-[Georgia]">artistic precision.</span></div></div>
-            </h3>
+        {/* Technical / Bento Grid */}
+        <div className="stats-grid grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-16 font-geist text-zinc-400 text-lg md:text-xl">
-                <div className="about-line">
-                    <p>Based in Bahrain, I bridge the gap between design and engineering. I don't just write code; I solve problems using visual language and interactive systems.</p>
-                </div>
-                <div className="about-line">
-                    <p>Currently obsessed with micro-interactions, WebGL, and building accessible applications that feel alive.</p>
+            {/* Card 1 */}
+            <div className="stat-card p-8 rounded-2xl border border-zinc-800 bg-zinc-900/30 hover:bg-zinc-900/50 transition-colors">
+                <h3 className="text-zinc-500 font-mono text-xs uppercase mb-4">Core Stack</h3>
+                <ul className="space-y-2 font-gilroy font-bold text-xl">
+                    <li>React / Next.js</li>
+                    <li>TypeScript</li>
+                    <li>Node.js / Go</li>
+                    <li>PostgreSQL</li>
+                </ul>
+            </div>
+
+            {/* Card 2 */}
+            <div className="stat-card p-8 rounded-2xl border border-zinc-800 bg-zinc-900/30 hover:bg-zinc-900/50 transition-colors">
+                <h3 className="text-zinc-500 font-mono text-xs uppercase mb-4">Design Philosophy</h3>
+                <p className="text-lg text-zinc-300 font-geist">
+                    Minimalism is not the absence of elements, but the perfection of the essential.
+                </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="stat-card p-8 rounded-2xl border border-zinc-800 bg-red-900/10 border-red-900/20 hover:bg-red-900/20 transition-colors">
+                <h3 className="text-red-400 font-mono text-xs uppercase mb-4">Current Status</h3>
+                <div className="flex items-end justify-between h-full pb-2">
+                    <span className="text-4xl font-gilroy font-bold text-white">Open for<br/>Business</span>
+                    <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse mb-2"></div>
                 </div>
             </div>
+
         </div>
 
       </div>
-
-      {/* Add this style for the outlined text in marquee */}
-      <style jsx>{`
-        .stroke-text {
-            -webkit-text-stroke: 2px #3f3f46; 
-        }
-      `}</style>
     </section>
   );
 };

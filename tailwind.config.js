@@ -9,6 +9,7 @@ module.exports = {
       fontFamily: {
         geist: ['Geist', 'sans-serif'],
         gilroy: ['Gilroy', 'sans-serif'],
+        gsans: ['GSans', 'sans-serif'],
       },
     },
   },

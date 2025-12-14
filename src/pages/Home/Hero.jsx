@@ -11,7 +11,6 @@ function Hero() {
 
   const mainContainerRef = useRef(null);
   const heroContentRef = useRef(null);
-  const aboutContentRef = useRef(null);
   const imageContainerRef = useRef(null);
   const navRef = useRef(null);
   const bottomBarRef = useRef(null);
@@ -50,10 +49,38 @@ function Hero() {
     });
   };
 
+  // --- PARALLAX SCROLL TRIGGER ---
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+        ScrollTrigger.create({
+            trigger: mainContainerRef.current,
+            start: "top top",
+            end: "bottom top",
+            pin: true, 
+            pinSpacing: false, 
+            scrub: true,
+        });
+
+        gsap.to(heroContentRef.current, {
+            scale: 0.95,
+            opacity: 0.5,
+            ease: "none",
+            scrollTrigger: {
+                trigger: mainContainerRef.current,
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            }
+        });
+
+    }, mainContainerRef);
+    return () => ctx.revert();
+  }, []);
+
 //Initial Hero Animations
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(".hero-animate, .hero-text-p",
+      gsap.fromTo(".hero-animate, p",
         { opacity: 0 },
         { opacity: 1, duration: 1, delay: 0.3, stagger: 0.1, ease: "power4.out" }
       );
@@ -61,44 +88,6 @@ function Hero() {
     return () => ctx.revert();
   }, []);
 
-// Scroll-triggered About animations
-//   useLayoutEffect(() => {
-//     const ctx = gsap.context(() => {
-//       const mm = gsap.matchMedia();
-
-//       mm.add("(min-width: 1024px)", () => {
-//         const tl = gsap.timeline({
-//           scrollTrigger: {
-//             trigger: mainContainerRef.current,
-//             start: "top top",
-//             end: "+=1200",
-//             scrub: 1,
-//             pin: true,
-//             anticipatePin: 1
-//           }
-//         });
-
-//         tl.to(mainContainerRef.current, { backgroundColor: "#09090b", duration: 1, ease: "power2.inOut" })
-//           .to([heroContentRef.current, navRef.current, bottomBarRef.current], { autoAlpha: 0, y: -50, duration: 0.5 }, "<")
-//           .to(imageContainerRef.current, { x: "45vw", scale: 1, duration: 1.5, ease: "power2.inOut" }, "<") // Image full size
-//           .fromTo(aboutContentRef.current, { x: -100, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: 1.5, ease: "power2.out" }, "-=1.0");
-//       });
-
-//       mm.add("(max-width: 1023px)", () => {
-//         gsap.to(imageContainerRef.current, {
-//           scrollTrigger: {
-//             trigger: aboutContentRef.current,
-//             start: "top bottom",
-//             scrub: true
-//           },
-//           opacity: 0.2
-//         });
-//       });
-
-//     }, mainContainerRef);
-
-//     return () => ctx.revert();
-//   }, []);
 
 // Local Time Update
   useEffect(() => {
@@ -128,6 +117,25 @@ function Hero() {
     {/* Images */}
         <div ref={imageContainerRef} className="relative z-10 w-64 h-80 mt-10 mx-auto md:w-150 md:h-auto lg:absolute lg:top-10 lg:left-32 lg:m-0 lg:w-150 lg:h-auto">
           <img 
+            src="/Money.webp" 
+            alt="Talking Money"
+            className={`absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto ${hovered ? "opacity-100" : "opacity-0"} transition-opacity duration-500 z-20`}
+          />
+          <img 
+            src="/Smiling.webp" 
+            alt="Smiling"
+            className={`absolute inset-0 top-3 w-full h-full object-cover md:w-150 md:h-auto opacity-0 transition-opacity duration-500 hover:opacity-100 z-20`}
+          />
+          <img 
+            src="/Talking.webp" 
+            alt="Talking"
+            className="absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto opacity-100 transition-opacity duration-500 hover:opacity-0 z-10"
+          />
+        </div>
+
+        {/* Old Images */}
+        {/* <div ref={imageContainerRef} className="relative z-10 w-64 h-80 mt-10 mx-auto md:w-150 md:h-auto lg:absolute lg:top-10 lg:left-32 lg:m-0 lg:w-150 lg:h-auto">
+          <img 
             src="/Talking.webp" 
             alt="Talking"
             className={`absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto ${hovered ? "opacity-100" : "opacity-0"} transition-opacity duration-500 z-20`}
@@ -142,7 +150,7 @@ function Hero() {
             alt="Portrait"
             className="absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto opacity-100 transition-opacity duration-500 hover:opacity-0 z-10"
           />
-        </div>
+        </div> */}
 
     {/* Hero Content */}
         <div ref={heroContentRef} className="relative z-20 flex flex-col items-center gap-6 mt-10 lg:absolute lg:top-1/2 lg:left-1/2 lg:ml-20 lg:-translate-y-1/2 lg:items-start lg:gap-10 lg:mt-0">
@@ -153,39 +161,11 @@ function Hero() {
             <p>I'm Abdulrahman Janahi.</p>
             <p>I build <span className='italic font-[Georgia]'>clean</span>, <span className='italic font-[Georgia]'>modern</span>, and <span className='italic font-[Georgia]'>engaging</span> web apps.</p>
           </div>
-          <button className='hero-animate flex flex-row gap-2 border-b-3 border-red-700 text-red-700 text-3xl md:text-4xl font-bold w-fit pr-3 text-start items-center'>
+          <button className='hero-animate flex flex-row gap-2 border-b-3 border-red-700 text-red-700 text-3xl md:text-4xl font-bold font-gilroy w-fit pr-3 text-start items-center'>
             <span ref={businessRef} onMouseEnter={() => {scrambleText(businessRef.current, "LET'S TALK BUSINESS."); setHovered(true)}} onMouseLeave={() =>{ businessRef.current.textContent = "LET'S TALK BUSINESS."; setHovered(false)}}>
               Let's Talk Business.
             </span> <MessageIcon className="w-6 md:w-8" />
           </button>
-        </div>
-
-    {/* About Content --> #Hero */}
-        {/* <div ref={aboutContentRef} className="hidden lg:flex absolute inset-0 z-10 items-center justify-start pl-32 opacity-0 invisible pointer-events-none">
-          <div className="max-w-2xl text-white">
-            <h2 className="text-sm font-geist uppercase tracking-widest text-zinc-500 mb-6">/ About Me</h2>
-            <h3 className="text-5xl lg:text-7xl font-gilroy font-bold leading-tight mb-8">
-              The intersection of <br />
-              <span className="text-red-600">Design</span> & Code.
-            </h3>
-            <p className="text-xl leading-relaxed text-zinc-400 font-[Georgia] mb-6">
-              I'm an Indie Developer based in Bahrain. I don't just write code; I craft digital experiences that solve real problems using visual language and interactive systems.
-            </p>
-            <a href="/indie" className="text-white border-b border-white pb-1 font-bold hover:text-red-500 hover:border-red-500 transition-all">
-              READ FULL STORY
-            </a>
-          </div>
-        </div> */}
-
-        <div className="lg:hidden w-full bg-zinc-950 text-white p-10 py-20 mt-10">
-          <h2 className="text-sm font-geist uppercase tracking-widest text-zinc-500 mb-4">/ About Me</h2>
-          <h3 className="text-4xl font-gilroy font-bold leading-tight mb-6">
-            The intersection of <br />
-            <span className="text-red-600">Design</span> & Code.
-          </h3>
-          <p className="text-lg leading-relaxed text-zinc-400 font-[Georgia] mb-6">
-            I'm an Indie Developer based in Bahrain. I don't just write code; I craft digital experiences.
-          </p>
         </div>
 
       </div>
@@ -281,7 +261,7 @@ const DraggableLayer = () => {
             <span className="absolute -bottom-1.5 -left-1.5 w-3 h-3 bg-white border border-[#008ef0]"></span>
             <span className="absolute -bottom-1.5 -right-1.5 w-3 h-3 bg-white border border-[#008ef0]"></span>
             <div className="flex flex-row bg-white font-gilroy font-bold items-end gap-2 pointer-events-none">
-              <h1 className="text-4xl md:text-6xl leading-none text-black">Fullstack Developer</h1>
+              <h1 className="text-4xl md:text-6xl font-gsans leading-none text-black">Fullstack Developer</h1>
             </div>
           </div>
         </motion.div>
