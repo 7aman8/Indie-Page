@@ -98,94 +98,101 @@ const Contact = () => {
       id='contact'
       className="relative w-full h-screen bg-[#09090b] font-gsans text-white flex mx-auto items-center justify-center overflow-hidden"
     >
-      
-      <div className="w-[90vw] h-[70vh] max-w-6xl px-6 md:px-0">
-        
-        <form ref={formRef} className="flex flex-col gap-10 md:gap-10 font-gilroy text-2xl md:text-4xl lg:text-5xl leading-tight">
-            
-            {/* --- LINE 1 --- */}
-            <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
-                <span className="contact-text font-normal">Hey, Abdulrahman! My name is</span>
-                <input 
-                    type="text" 
-                    placeholder="Your Name" 
-                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[300px] transition-colors`}
-                />
-            </div>
+      <div className="w-full h-full flex flex-col items-center justify-center relative">
+        {/* Form container with padding at bottom for button */}
+        <div className="w-[95vw] max-w-6xl flex-1 flex flex-col justify-center px-2 sm:px-6 md:px-0 pb-[90px] sm:pb-[120px] pt-4 overflow-y-auto">
+          <form ref={formRef} className="flex flex-col gap-8 sm:gap-10 font-gilroy text-lg sm:text-2xl md:text-4xl lg:text-5xl leading-tight">
+              
+              {/* --- LINE 1 --- */}
+              <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
+                  <span className="contact-text font-normal">Hey, Abdulrahman! My name is</span>
+                  <input 
+                      type="text" 
+                      placeholder="Your Name" 
+                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[300px] transition-colors`}
+                  />
+              </div>
 
-            {/* --- LINE 2 --- */}
-            <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
-                <span className="contact-text font-normal">and I am from</span>
-                <input 
-                    type="text" 
-                    placeholder="Country" 
-                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[200px] transition-colors`}
-                />
-            </div>
+              {/* --- LINE 2 --- */}
+              <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
+                  <span className="contact-text font-normal">and I am from</span>
+                  <input 
+                      type="text" 
+                      placeholder="Country" 
+                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[200px] transition-colors`}
+                  />
+              </div>
 
-            {/* --- LINE 3: Topic --- */}
-            <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
-                <span className="contact-text font-normal whitespace-nowrap">Let's connect about</span>
-                <div className="flex flex-wrap gap-3">
-                    {['Collaboration', 'Potential Project', 'Networking'].map((item) => (
-                        <button
-                        key={item}
-                        type="button"
-                        onClick={() => setTopic(item)}
-                        style={topic === item ? { color: "#ffffff" } : {color: "#fb2c36"}}
-                        className={`contact-btn px-6 py-2 rounded-full border text-xl md:text-2xl transition-all duration-300
-                            ${
-                            topic === item
-                                ? 'bg-red-600 border-red-600 shadow-md shadow-red-300'
-                                : 'hover:bg-white/10 hover:border-white/40'
-                            }
-                        `}
-                        >
-                        {item}
-                        </button>
-                    ))}
-                </div>
-            </div>
+              {/* --- LINE 3: Topic --- */}
+              <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
+                  <span className="contact-text font-normal whitespace-nowrap">Let's connect about</span>
+                  <div className="flex flex-wrap gap-3">
+                      {['Collaboration', 'Potential Project', 'Networking'].map((item) => (
+                          <button
+                          key={item}
+                          type="button"
+                          onClick={() => setTopic(item)}
+                          style={topic === item ? { color: "#ffffff" } : {color: "#fb2c36"}}
+                          className={`contact-btn px-6 py-2 rounded-full border text-xl md:text-2xl transition-all duration-300
+                              ${
+                              topic === item
+                                  ? 'bg-red-600 border-red-600 shadow-md shadow-red-300'
+                                  : 'hover:bg-white/10 hover:border-white/40'
+                              }
+                          `}
+                          >
+                          {item}
+                          </button>
+                      ))}
+                  </div>
+              </div>
 
-            {/* --- LINE 4: Contact Method --- */}
-            <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
-                <span className="contact-text font-normal">We can talk at</span>
-                <input 
-                    type="email" 
-                    placeholder="name@website.com" 
-                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 flex-grow md:max-w-md transition-colors`}
-                />
-            </div>
+              {/* --- LINE 4: Contact Method --- */}
+              <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
+                  <span className="contact-text font-normal">We can talk at</span>
+                  <input 
+                      type="email" 
+                      placeholder="name@website.com" 
+                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 flex-grow md:max-w-md transition-colors`}
+                  />
+              </div>
 
-            {/* --- LINE 5: Message --- */}
-            <div className="contact-line flex flex-col md:flex-row md:items-baseline gap-6 opacity-0">
-                <span className="contact-text font-normal whitespace-nowrap">In short,</span>
-                <textarea 
-                    rows={1}
-                    placeholder="Type your message..." 
-                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full resize-none overflow-hidden`}
-                    onInput={(e) => {
-                        e.target.style.height = 'auto';
-                        e.target.style.height = e.target.scrollHeight + 'px';
-                    }}
-                />
-            </div>
+              {/* --- LINE 5: Message --- */}
+              <div className="contact-line flex flex-col md:flex-row md:items-baseline gap-6 opacity-0">
+                  <span className="contact-text font-normal whitespace-nowrap">In short,</span>
+                  <textarea 
+                      rows={1}
+                      placeholder="Type your message..." 
+                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full resize-none overflow-hidden`}
+                      onInput={(e) => {
+                          e.target.style.height = 'auto';
+                          e.target.style.height = e.target.scrollHeight + 'px';
+                      }}
+                  />
+              </div>
 
-            {/* --- LINE 6: Submit --- */}
-            <div className="flex font-gilroy absolute bottom-15 mx-auto left-1/2 -translate-x-1/2 justify-center">
-                <button 
-                    ref={buttonRef}
-                    type="submit"
-                    className="contact-text group justify-center flex items-center gap-4 text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter opacity-0"
-                >
-                    <span>Send it</span>
-                    <span className="group-hover:-translate-y-4 group-hover:translate-x-4 transition-transform duration-500 text-red-600">
-                        <ArrowIcon className="w-16 h-16 md:w-24 md:h-24" />
-                    </span>
-                </button>
-            </div>
-
-        </form>
+              {/* --- LINE 6: Submit --- */}
+          </form>
+        </div>
+        {/* Submit button pinned to bottom */}
+        <div className="w-full absolute left-0 bottom-0 flex justify-center pointer-events-none">
+          <button 
+            ref={buttonRef}
+            type="submit"
+            className="contact-text group flex items-center gap-3 sm:gap-4 text-5xl sm:text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter opacity-0 mb-4 pointer-events-auto bg-transparent"
+            style={{ zIndex: 10 }}
+            // The button is outside the form, so you may want to handle submit via JS if needed
+            onClick={e => {
+              e.preventDefault();
+              if (formRef.current) formRef.current.requestSubmit();
+            }}
+          >
+            <span>Send it</span>
+            <span className="group-hover:-translate-y-2 group-hover:translate-x-2 sm:group-hover:-translate-y-4 sm:group-hover:translate-x-4 transition-transform duration-500 text-red-600">
+              <ArrowIcon className="w-8 h-8 sm:w-16 sm:h-16 md:w-24 md:h-24" />
+            </span>
+          </button>
+        </div>
       </div>
 
     </section>
