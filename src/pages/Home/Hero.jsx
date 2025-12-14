@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin'; 
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function Hero() {
   const [localTime, setLocalTime] = useState('');
@@ -88,6 +89,13 @@ function Hero() {
     return () => ctx.revert();
   }, []);
 
+  const scrollToContact = () => {
+    gsap.to(window, { 
+      duration: 2, 
+      scrollTo: "#contact",
+      ease: "power4.inOut" 
+    });
+  };
 
 // Local Time Update
   useEffect(() => {
@@ -109,7 +117,7 @@ function Hero() {
         <a href="/" className={navClass}>Home</a>
         <a href="#" className={navClass}>Me</a>
         <a href="/indie" className={navClass}>Work</a>
-        <a href="/indie" className={navClass}>Contact</a>
+        <a onClick={scrollToContact} className={navClass}>Contact</a>
       </nav>
 
       <div className="w-full h-full flex flex-col lg:block">
@@ -131,7 +139,6 @@ function Hero() {
             alt="Talking"
             className="absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto opacity-100 transition-opacity duration-500 hover:opacity-0 z-10"
           />
-        </div>
 
         {/* Old Images */}
         {/* <div ref={imageContainerRef} className="relative z-10 w-64 h-80 mt-10 mx-auto md:w-150 md:h-auto lg:absolute lg:top-10 lg:left-32 lg:m-0 lg:w-150 lg:h-auto">
@@ -151,6 +158,9 @@ function Hero() {
             className="absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto opacity-100 transition-opacity duration-500 hover:opacity-0 z-10"
           />
         </div> */}
+          
+        </div>
+
 
     {/* Hero Content */}
         <div ref={heroContentRef} className="relative z-20 flex flex-col items-center gap-6 mt-10 lg:absolute lg:top-1/2 lg:left-1/2 lg:ml-20 lg:-translate-y-1/2 lg:items-start lg:gap-10 lg:mt-0">
@@ -162,7 +172,7 @@ function Hero() {
             <p>I build <span className='italic font-[Georgia]'>clean</span>, <span className='italic font-[Georgia]'>modern</span>, and <span className='italic font-[Georgia]'>engaging</span> web apps.</p>
           </div>
           <button className='hero-animate flex flex-row gap-2 border-b-3 border-red-700 text-red-700 text-3xl md:text-4xl font-bold font-gilroy w-fit pr-3 text-start items-center'>
-            <span ref={businessRef} onMouseEnter={() => {scrambleText(businessRef.current, "LET'S TALK BUSINESS."); setHovered(true)}} onMouseLeave={() =>{ businessRef.current.textContent = "LET'S TALK BUSINESS."; setHovered(false)}}>
+            <span onClick={scrollToContact} ref={businessRef} onMouseEnter={() => {scrambleText(businessRef.current, "LET'S TALK BUSINESS."); setHovered(true)}} onMouseLeave={() =>{ businessRef.current.textContent = "LET'S TALK BUSINESS."; setHovered(false)}}>
               Let's Talk Business.
             </span> <MessageIcon className="w-6 md:w-8" />
           </button>

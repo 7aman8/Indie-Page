@@ -15,10 +15,10 @@ function Home() {
         <Hero />
 
         <div className="bg-zinc-950 text-white relative z-20">
-          <About />
-          <Work />
+          {/* <About /> */}
+          {/* <Work /> */}
           <Contact />
-          {/* <Footer /> */}
+          <Footer />
       </div>
     
     </div>

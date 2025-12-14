@@ -95,7 +95,7 @@ const Contact = () => {
   return (
     <section 
       ref={containerRef} 
-      // Starting State: Dark Background, White Text
+      id='contact'
       className="relative w-full h-screen bg-[#09090b] font-gsans text-white flex mx-auto items-center justify-center overflow-hidden"
     >
       
