@@ -6,7 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Home from './pages/Home/Home'
 import Indie from './pages/indie'
+
 import Preloader from './components/Prelaoder'
+import CustomCursor from './components/CustomCursor'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -41,7 +43,7 @@ function App() {
   return (
     <>
     {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-
+    <CustomCursor />
     <BrowserRouter>
       <ReactLenis
         root

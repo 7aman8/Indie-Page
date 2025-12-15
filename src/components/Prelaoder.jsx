@@ -25,6 +25,7 @@ const Preloader = ({ onComplete }) => {
       tl.to(counterObj, {
         value: 100,
         duration: 2,
+        // snap: {value: 25},
         ease: "power2.inOut",
         onUpdate: () => {
             setCounter(Math.floor(counterObj.value));

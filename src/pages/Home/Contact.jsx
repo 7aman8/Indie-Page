@@ -1,36 +1,40 @@
 import React, { useState, useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { color } from 'framer-motion';
+import { useForm, ValidationError } from '@formspree/react';
+
+import SuccessMessage from '../../components/SuccessMessage';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
+  const [state, handleSubmit] = useForm("xdkqvopn");
+  
   const containerRef = useRef(null);
   const formRef = useRef(null);
   const buttonRef = useRef(null);
+  const successRef = useRef(null);
 
-  // State for form interaction
   const [topic, setTopic] = useState('');
-  const [contactMethod, setContactMethod] = useState('email');
 
   const inputTextClass = "text-lg md:text-2xl lg:text-3xl";
 
+  // --- ANIMATION ---
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top top",   // Start when top of section hits top of viewport
-          end: "+=2000",      // Pin for 2000px of scrolling
-          pin: true,          // Lock the screen
-          scrub: 1,           // Smooth scrubbing
+          start: "top top",   
+          end: "+=2000",      
+          pin: true,          
+          scrub: 1,           
           anticipatePin: 1
         }
       });
 
-      // 1. Reveal Lines One by One
+      // lines reveal
       const lines = gsap.utils.toArray('.contact-line');
       lines.forEach((line) => {
         tl.fromTo(line, 
@@ -39,10 +43,10 @@ const Contact = () => {
         );
       });
 
-      // 2. Add a small pause for user to read/interact visually
+
       tl.to({}, { duration: 0.5 });
 
-      // 3. THEME SWITCH (Dark -> Light)
+
       // Change Background to White
       tl.to(containerRef.current, { 
         backgroundColor: "#ffffff", 
@@ -101,90 +105,120 @@ const Contact = () => {
       <div className="w-full h-full flex flex-col items-center justify-center relative">
         {/* Form container with padding at bottom for button */}
         <div className="w-[95vw] max-w-6xl flex-1 flex flex-col justify-center px-2 sm:px-6 md:px-0 pb-[90px] sm:pb-[120px] pt-4 overflow-y-auto">
-          <form ref={formRef} className="flex flex-col gap-8 sm:gap-10 font-gilroy text-lg sm:text-2xl md:text-4xl lg:text-5xl leading-tight">
-              
-              {/* --- LINE 1 --- */}
-              <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
+          {
+            state.succeeded ? (
+              <SuccessMessage ref={successRef} />
+            ) : (
+            <>
+              <form
+              ref={formRef}
+              onSubmit={e => {
+                // Animate button on click
+                if (buttonRef.current) {
+                  gsap.to(buttonRef.current, { scale: 0.95, duration: 0.15, yoyo: true, repeat: 1, ease: "power1.inOut" });
+                }
+                handleSubmit(e);
+              }}
+              className="flex flex-col gap-8 sm:gap-10 font-gilroy text-lg sm:text-2xl md:text-4xl lg:text-5xl leading-tight"
+              style={{ opacity: state.succeeded ? 0 : 1, pointerEvents: state.succeeded ? 'none' : 'auto' }}
+              autoComplete="off"
+              >
+                {/* --- LINE 1 --- */}
+                <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
                   <span className="contact-text font-normal">Hey, Abdulrahman! My name is</span>
                   <input 
-                      type="text" 
-                      placeholder="Your Name" 
-                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[300px] transition-colors`}
-                  />
-              </div>
-
-              {/* --- LINE 2 --- */}
-              <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
+                    type="text" 
+                    name="name"
+                    placeholder="Your Name" 
+                    required
+                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[300px] transition-colors`}
+                    />
+                  <ValidationError prefix="Name" field="name" errors={state.errors} />
+                </div>
+                {/* --- LINE 2 --- */}
+                <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
                   <span className="contact-text font-normal">and I am from</span>
                   <input 
-                      type="text" 
-                      placeholder="Country" 
-                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[200px] transition-colors`}
-                  />
-              </div>
-
-              {/* --- LINE 3: Topic --- */}
-              <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
+                    type="text" 
+                    name="country"
+                    placeholder="Country" 
+                    required
+                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[200px] transition-colors`}
+                    />
+                  <ValidationError prefix="Country" field="country" errors={state.errors} />
+                </div>
+                {/* --- LINE 3: Topic --- */}
+                <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
                   <span className="contact-text font-normal whitespace-nowrap">Let's connect about</span>
                   <div className="flex flex-wrap gap-3">
-                      {['Collaboration', 'Potential Project', 'Networking'].map((item) => (
-                          <button
-                          key={item}
-                          type="button"
-                          onClick={() => setTopic(item)}
-                          style={topic === item ? { color: "#ffffff" } : {color: "#fb2c36"}}
-                          className={`contact-btn px-6 py-2 rounded-full border text-xl md:text-2xl transition-all duration-300
-                              ${
-                              topic === item
-                                  ? 'bg-red-600 border-red-600 shadow-md shadow-red-300'
-                                  : 'hover:bg-white/10 hover:border-white/40'
-                              }
+                    {['Collaboration', 'Potential Project', 'Networking'].map((item) => (
+                      <button
+                      key={item}
+                      type="button"
+                      onClick={() => setTopic(item)}
+                      style={topic === item ? { color: "#ffffff" } : {color: "#fb2c36"}}
+                      className={`contact-btn px-6 py-2 rounded-full border text-xl md:text-2xl transition-all duration-300
+                        ${topic === item
+                          ? 'bg-red-600 border-red-600 shadow-md shadow-red-300'
+                          : 'hover:bg-white/10 hover:border-white/40'
+                          }
                           `}
                           >
-                          {item}
-                          </button>
-                      ))}
+                        {item}
+                      </button>
+                    ))}
+                    <input type="hidden" name="topic" value={topic} />
                   </div>
-              </div>
-
-              {/* --- LINE 4: Contact Method --- */}
-              <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
+                  <ValidationError prefix="Topic" field="topic" errors={state.errors} />
+                </div>
+                {/* --- LINE 4: Contact Method --- */}
+                <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
                   <span className="contact-text font-normal">We can talk at</span>
                   <input 
-                      type="email" 
-                      placeholder="name@website.com" 
-                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 flex-grow md:max-w-md transition-colors`}
-                  />
-              </div>
-
-              {/* --- LINE 5: Message --- */}
-              <div className="contact-line flex flex-col md:flex-row md:items-baseline gap-6 opacity-0">
+                    type="email" 
+                    name="email"
+                    placeholder="name@website.com" 
+                    required
+                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 flex-grow md:max-w-md transition-colors`}
+                    />
+                  <ValidationError prefix="Email" field="email" errors={state.errors} />
+                </div>
+                {/* --- LINE 5: Message --- */}
+                <div className="contact-line flex flex-col md:flex-row md:items-baseline gap-6 opacity-0">
                   <span className="contact-text font-normal whitespace-nowrap">In short,</span>
                   <textarea 
-                      rows={1}
-                      placeholder="Type your message..." 
-                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full resize-none overflow-hidden`}
-                      onInput={(e) => {
-                          e.target.style.height = 'auto';
-                          e.target.style.height = e.target.scrollHeight + 'px';
-                      }}
-                  />
-              </div>
-
-              {/* --- LINE 6: Submit --- */}
-          </form>
+                    rows={1}
+                    name="message"
+                    placeholder="Type your message..." 
+                    required
+                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full resize-none overflow-hidden`}
+                    onInput={(e) => {
+                      e.target.style.height = 'auto';
+                      e.target.style.height = e.target.scrollHeight + 'px';
+                    }}
+                    />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} />
+                </div>
+              </form>
+            </>
+            )
+          }
+        
         </div>
+              
+
         {/* Submit button pinned to bottom */}
-        <div className="w-full absolute left-0 bottom-0 flex justify-center pointer-events-none">
+        <div className="w-full absolute left-0 bottom-5 flex justify-center pointer-events-none">
           <button 
             ref={buttonRef}
             type="submit"
             className="contact-text group flex items-center gap-3 sm:gap-4 text-5xl sm:text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter opacity-0 mb-4 pointer-events-auto bg-transparent"
-            style={{ zIndex: 10 }}
-            // The button is outside the form, so you may want to handle submit via JS if needed
+            style={{ zIndex: 10, display: state.succeeded ? 'none' : 'flex' }}
             onClick={e => {
               e.preventDefault();
               if (formRef.current) formRef.current.requestSubmit();
+              // Animate button on click
+              gsap.to(buttonRef.current, { scale: 0.95, duration: 0.15, yoyo: true, repeat: 1, ease: "power1.inOut" });
             }}
           >
             <span>Send it</span>
@@ -194,17 +228,16 @@ const Contact = () => {
           </button>
         </div>
       </div>
-
     </section>
   );
 };
 
 function ArrowIcon({ className }) {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-            <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-    )
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
+      <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  )
 }
 
 export default Contact;
