@@ -185,7 +185,7 @@ function Hero() {
         {/* Location and Time */}
         <div className="whitespace-nowrap space-x-1">
           <span className='text-red-600 font-bold'>
-            <a href="https://en.wikipedia.org/wiki/Bahrain">Bahrain</a>
+            <a href="https://en.wikipedia.org/wiki/Bahrain" target='_blank' >Bahrain</a>
           </span> 
           <span>{localTime}</span>
         </div>
@@ -261,7 +261,7 @@ const DraggableLayer = () => {
           whileDrag={{ cursor: "grabbing" }}
           onPointerDown={() => { controls.stop(); setHasInteracted(true); }}
           animate={hasInteracted ? {} : { x: [0, 80, 0], y: [0, 20, 0], rotate: [0, 3, 0] }}
-          transition={{ duration: 1.2, delay: 1.5, ease: "easeInOut", times: [0, 0.5, 1], repeat: 0 }}
+          transition={{ duration: 1.2, delay: 3, ease: "easeInOut", times: [0, 0.5, 1], repeat: 0 }}
           onDragStart={() => {setHasInteracted(true);}}
           className="relative z-10"
         >
