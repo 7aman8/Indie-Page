@@ -78,6 +78,7 @@ function Hero() {
     return () => ctx.revert();
   }, []);
 
+
 //Initial Hero Animations
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -89,10 +90,10 @@ function Hero() {
     return () => ctx.revert();
   }, []);
 
-  const scrollToContact = () => {
+  const scrollTo = (section) => {
     gsap.to(window, { 
       duration: 2, 
-      scrollTo: "#contact",
+      scrollTo: `#${section}`,
       ease: "power4.inOut" 
     });
   };
@@ -110,14 +111,59 @@ function Hero() {
     return () => clearInterval(intervalId);
   }, []);
 
+//   The nav magnetic effect
+  useLayoutEffect(() => {
+    const items = navRef.current.querySelectorAll(".magnetic");
+
+    const radius = 50;    
+    const strength = 0.35;  
+
+    const handleMouseMove = (e) => {
+        items.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const cx = rect.left + rect.width / 2;
+        const cy = rect.top + rect.height / 2;
+
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < radius) {
+            const pull = (1 - distance / radius) * strength;
+
+            gsap.to(el, {
+            x: dx * pull,
+            y: dy * pull,
+            duration: 0.3,
+            // rotate: Math.atan2(dy, dx) * 57.2958, --> clunky roration
+            rotate: 5 * pull,
+            ease: "power3.out",
+            });
+        } else {
+            gsap.to(el, {
+            x: 0,
+            y: 0,
+            rotate: 0,
+            duration: 0.6,
+            ease: "elastic.out(1, 0.4)",
+            });
+        }
+        });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
+
   return (
-    <div ref={mainContainerRef} className="relative w-full h-[100vh] mb-10 lg:h-screen overflow-hidden bg-white text-black">
+    <div ref={mainContainerRef} className="relative w-full h-[100vh]  lg:h-screen overflow-hidden bg-white text-black">
 
       <nav ref={navRef} className="flex flex-col font-gilroy font-bold absolute top-5 left-5 gap-1 text-xl md:text-3xl lg:text-4xl z-50">
-        <a href="/" className={navClass}>Home</a>
-        <a href="#" className={navClass}>Me</a>
-        <a href="/indie" className={navClass}>Work</a>
-        <a onClick={scrollToContact} className={navClass}>Contact</a>
+        <a href="/" className={`magnetic inline-block ${navClass}`}>Home</a>
+        <a href="#about" onClick={() => scrollTo("about")} className={`magnetic inline-block ${navClass}`}>Me</a>
+        <a href="/indie" className={`magnetic inline-block ${navClass}`}>Work</a>
+        <a onClick={() => scrollTo("contact")} className={`magnetic inline-block ${navClass}`}>Contact</a>
       </nav>
 
       <div className="w-full h-full flex flex-col lg:block">
@@ -172,7 +218,7 @@ function Hero() {
             <p>I build <span className='italic font-[Georgia]'>clean</span>, <span className='italic font-[Georgia]'>modern</span>, and <span className='italic font-[Georgia]'>engaging</span> web apps.</p>
           </div>
           <button className='hero-animate flex flex-row gap-2 border-b-3 border-red-700 text-red-700 text-3xl md:text-4xl font-bold font-gilroy w-fit pr-3 text-start items-center'>
-            <span onClick={scrollToContact} ref={businessRef} onMouseEnter={() => {scrambleText(businessRef.current, "LET'S TALK BUSINESS."); setHovered(true)}} onMouseLeave={() =>{ businessRef.current.textContent = "LET'S TALK BUSINESS."; setHovered(false)}}>
+            <span onClick={() => scrollTo("contact")} ref={businessRef} onMouseEnter={() => {scrambleText(businessRef.current, "LET'S TALK BUSINESS."); setHovered(true)}} onMouseLeave={() =>{ businessRef.current.textContent = "LET'S TALK BUSINESS."; setHovered(false)}}>
               Let's Talk Business.
             </span> <MessageIcon className="w-6 md:w-8" />
           </button>
@@ -261,7 +307,7 @@ const DraggableLayer = () => {
           whileDrag={{ cursor: "grabbing" }}
           onPointerDown={() => { controls.stop(); setHasInteracted(true); }}
           animate={hasInteracted ? {} : { x: [0, 80, 0], y: [0, 20, 0], rotate: [0, 3, 0] }}
-          transition={{ duration: 1.2, delay: 3, ease: "easeInOut", times: [0, 0.5, 1], repeat: 0 }}
+          transition={{ duration: 1.2, delay: 5, ease: "easeInOut", times: [0, 0.5, 1], repeat: 0 }}
           onDragStart={() => {setHasInteracted(true);}}
           className="relative z-10"
         >

@@ -15,7 +15,7 @@ function Home() {
         <Hero />
 
         <div className="bg-zinc-950 text-white relative z-20">
-          {/* <About /> */}
+          <About />
           {/* <Work /> */}
           <Contact />
           <Footer />
