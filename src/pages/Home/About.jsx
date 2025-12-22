@@ -5,11 +5,15 @@ import { Heart } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const About = () => {
+const About = ( { isStatic = false } ) => {
   const containerRef = useRef(null);
   const textRef = useRef(null);
   const gridRef = useRef(null);
   const headerContainerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    if (isStatic) return; 
+  }, [isStatic]);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -20,7 +24,7 @@ const About = () => {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top top",
-          end: "+=1500", 
+          end: "+=1200", 
           pin: true,
           scrub: 2, 
           anticipatePin: 1,
@@ -52,6 +56,7 @@ const About = () => {
     }, containerRef);
     return () => ctx.revert();
   }, []);
+
 
   return (
     <section 

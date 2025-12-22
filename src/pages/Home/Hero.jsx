@@ -162,7 +162,7 @@ function Hero() {
       <nav ref={navRef} className="flex flex-col font-gilroy font-bold absolute top-5 left-5 gap-1 text-xl md:text-3xl lg:text-4xl z-50">
         <a href="/" className={`magnetic inline-block ${navClass}`}>Home</a>
         <a href="#about" onClick={() => scrollTo("about")} className={`magnetic inline-block ${navClass}`}>Me</a>
-        <a href="/indie" className={`magnetic inline-block ${navClass}`}>Work</a>
+        <a onClick={() => scrollTo("work")} className={`magnetic inline-block ${navClass}`}>Work</a>
         <a onClick={() => scrollTo("contact")} className={`magnetic inline-block ${navClass}`}>Contact</a>
       </nav>
 

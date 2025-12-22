@@ -6,6 +6,8 @@ import Work from "./Work";
 import Contact from "./Contact";
 import Footer from "./Footer";
 
+import StackingFlow from '@/components/StackingCards';
+
 
 function Home() {
 
@@ -16,7 +18,8 @@ function Home() {
 
         <div className="bg-zinc-950 text-white relative z-20">
           <About />
-          {/* <Work /> */}
+          <Work />
+          {/* <StackingFlow /> */}
           <Contact />
           <Footer />
       </div>

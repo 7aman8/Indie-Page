@@ -87,7 +87,7 @@ const CustomCursor = () => {
   }, [isHovering]);
 
   return (
-    <>
+    <div className="custom-cursor">
       {/* The Small Dot (Precise Pointer) */}
       <div 
         ref={cursorRef}
@@ -99,7 +99,7 @@ const CustomCursor = () => {
         ref={followerRef}
         className="fixed top-0 left-0 w-10 h-10 border border-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
       />
-    </>
+    </div>
   );
 };
 
