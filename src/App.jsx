@@ -18,8 +18,18 @@ function LenisGSAPSync() {
   useEffect(() => {
     if (!lenis) return
 
+    let pointerTimer;
+    const handleScroll = () => {
+      ScrollTrigger.update();
+      document.body.style.pointerEvents = 'none';
+      clearTimeout(pointerTimer);
+      pointerTimer = setTimeout(() => {
+        document.body.style.pointerEvents = '';
+      }, 50);
+    };
+
     // Sync Lenis with ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update)
+    lenis.on('scroll', handleScroll)
 
     const raf = (time) => {
       lenis.raf(time * 1000)
@@ -30,7 +40,9 @@ function LenisGSAPSync() {
 
     return () => {
       gsap.ticker.remove(raf)
-      lenis.off('scroll', ScrollTrigger.update)
+      lenis.off('scroll', handleScroll)
+      clearTimeout(pointerTimer);
+      document.body.style.pointerEvents = '';
     }
   }, [lenis])
 
@@ -42,26 +54,26 @@ function App() {
 
   return (
     <>
-    {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
-    <CustomCursor />
-    <BrowserRouter>
-      <ReactLenis
-        root
-        smooth
-        lerp={0.1}
-        smoothTouch={false}
-      >
-        <LenisGSAPSync />
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      <CustomCursor />
+      <BrowserRouter>
+        <ReactLenis
+          root
+          smooth
+          lerp={0.1}
+          smoothTouch={false}
+        >
+          <LenisGSAPSync />
 
-        <div className="min-h-screen w-full bg-[#09090b]">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/indie" element={<Indie />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </div>
-      </ReactLenis>
-    </BrowserRouter>
+          <div className="min-h-screen w-full bg-[#09090b]">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/indie" element={<Indie />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </div>
+        </ReactLenis>
+      </BrowserRouter>
     </>
   )
 }

@@ -267,3 +267,21 @@
     }
 
 }
+
+@layer utilities {
+  .gpu-accel {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0); /* Force GPU layer */
+  }
+}
+
+/* Optimize all images and videos for the GPU */
+img, video {
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+section {
+  contain: layout style;
+}

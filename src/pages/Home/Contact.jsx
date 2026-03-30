@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Contact = () => {
   const [state, handleSubmit] = useForm("xdkqvopn");
-  
+
   const containerRef = useRef(null);
   const formRef = useRef(null);
   const buttonRef = useRef(null);
@@ -22,14 +22,14 @@ const Contact = () => {
   // --- ANIMATION ---
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top top",   
-          end: "+=2000",      
-          pin: true,          
-          scrub: 1,           
+          start: "top top",
+          end: "+=2000",
+          pin: true,
+          scrub: 1,
           anticipatePin: 1
         }
       });
@@ -37,8 +37,8 @@ const Contact = () => {
       // lines reveal
       const lines = gsap.utils.toArray('.contact-line');
       lines.forEach((line) => {
-        tl.fromTo(line, 
-          { opacity: 0, y: 30, filter: "blur(10px)" }, 
+        tl.fromTo(line,
+          { opacity: 0, y: 30, filter: "blur(10px)" },
           { opacity: 1, y: 0, filter: "blur(0px)", duration: 1 }
         );
       });
@@ -48,37 +48,37 @@ const Contact = () => {
 
 
       // Change Background to White
-      tl.to(containerRef.current, { 
-        backgroundColor: "#ffffff", 
+      tl.to(containerRef.current, {
+        backgroundColor: "#ffffff",
         duration: 1.5,
-        ease: "power2.inOut" 
+        ease: "power2.inOut"
       }, "switch");
 
       // Change Text and Inputs to Black
-      tl.to([".contact-text", ".contact-input"], { 
-        color: "#000000", 
+      tl.to([".contact-text", ".contact-input"], {
+        color: "#000000",
         borderColor: "rgba(0,0,0,0.2)",
         placeholderColor: "rgba(0,0,0,0.4)",
         duration: 1.5,
         ease: "power2.inOut"
       }, "switch");
 
-    // Change Buttons to Red Theme
-    tl.fromTo(
-    ".contact-btn", 
-    { 
-        color: "#ffffff",         
-        borderColor: "#ffffff"    
-    },
-    { 
-        color: "#fb2c36",          
-        borderColor: "#fb2c36",
-        duration: 1.5,
-        ease: "power2.inOut"
-    },
-    "switch"
-    );
-      
+      // Change Buttons to Red Theme
+      tl.fromTo(
+        ".contact-btn",
+        {
+          color: "#ffffff",
+          borderColor: "#ffffff"
+        },
+        {
+          color: "#fb2c36",
+          borderColor: "#fb2c36",
+          duration: 1.5,
+          ease: "power2.inOut"
+        },
+        "switch"
+      );
+
       // Specifically fix input border colors separately to be safe
       tl.to("input, textarea", {
         borderBottomColor: "rgba(0,0,0,0.2)",
@@ -97,8 +97,8 @@ const Contact = () => {
   }, []);
 
   return (
-    <section 
-      ref={containerRef} 
+    <section
+      ref={containerRef}
       id='contact'
       className="relative w-full h-screen bg-[#09090b] font-gsans text-white flex mx-auto items-center justify-center overflow-hidden"
     >
@@ -109,107 +109,107 @@ const Contact = () => {
             state.succeeded ? (
               <SuccessMessage ref={successRef} />
             ) : (
-            <>
-              <form
-              ref={formRef}
-              onSubmit={e => {
-                // Animate button on click
-                if (buttonRef.current) {
-                  gsap.to(buttonRef.current, { scale: 0.95, duration: 0.15, yoyo: true, repeat: 1, ease: "power1.inOut" });
-                }
-                handleSubmit(e);
-              }}
-              className="flex flex-col gap-8 sm:gap-10 font-gilroy text-lg sm:text-2xl md:text-4xl lg:text-5xl leading-tight"
-              style={{ opacity: state.succeeded ? 0 : 1, pointerEvents: state.succeeded ? 'none' : 'auto' }}
-              autoComplete="off"
-              >
-                {/* --- LINE 1 --- */}
-                <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
-                  <span className="contact-text font-normal">Hey, Abdulrahman! My name is</span>
-                  <input 
-                    type="text" 
-                    name="name"
-                    placeholder="Your Name" 
-                    required
-                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[300px] transition-colors`}
+              <>
+                <form
+                  ref={formRef}
+                  onSubmit={e => {
+                    // Animate button on click
+                    if (buttonRef.current) {
+                      gsap.to(buttonRef.current, { scale: 0.95, duration: 0.15, yoyo: true, repeat: 1, ease: "power1.inOut" });
+                    }
+                    handleSubmit(e);
+                  }}
+                  className="flex flex-col gap-8 sm:gap-10 font-gilroy text-lg sm:text-2xl md:text-4xl lg:text-5xl leading-tight"
+                  style={{ opacity: state.succeeded ? 0 : 1, pointerEvents: state.succeeded ? 'none' : 'auto' }}
+                  autoComplete="off"
+                >
+                  {/* --- LINE 1 --- */}
+                  <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
+                    <span className="contact-text font-normal">Hey, Abdulrahman! My name is</span>
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your Name"
+                      required
+                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[300px] transition-colors`}
                     />
-                  <ValidationError prefix="Name" field="name" errors={state.errors} />
-                </div>
-                {/* --- LINE 2 --- */}
-                <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
-                  <span className="contact-text font-normal">and I am from</span>
-                  <input 
-                    type="text" 
-                    name="country"
-                    placeholder="Country" 
-                    required
-                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[200px] transition-colors`}
-                    />
-                  <ValidationError prefix="Country" field="country" errors={state.errors} />
-                </div>
-                {/* --- LINE 3: Topic --- */}
-                <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
-                  <span className="contact-text font-normal whitespace-nowrap">Let's connect about</span>
-                  <div className="flex flex-wrap gap-3">
-                    {['Collaboration', 'Potential Project', 'Networking'].map((item) => (
-                      <button
-                      key={item}
-                      type="button"
-                      onClick={() => setTopic(item)}
-                      style={topic === item ? { color: "#ffffff" } : {color: "#fb2c36"}}
-                      className={`contact-btn px-6 py-2 rounded-full border text-xl md:text-2xl transition-all duration-300
-                        ${topic === item
-                          ? 'bg-red-600 border-red-600 shadow-md shadow-red-300'
-                          : 'hover:bg-white/10 hover:border-white/40'
-                          }
-                          `}
-                          >
-                        {item}
-                      </button>
-                    ))}
-                    <input type="hidden" name="topic" value={topic} />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} />
                   </div>
-                  <ValidationError prefix="Topic" field="topic" errors={state.errors} />
-                </div>
-                {/* --- LINE 4: Contact Method --- */}
-                <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
-                  <span className="contact-text font-normal">We can talk at</span>
-                  <input 
-                    type="email" 
-                    name="email"
-                    placeholder="name@website.com" 
-                    required
-                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 flex-grow md:max-w-md transition-colors`}
+                  {/* --- LINE 2 --- */}
+                  <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-4 md:gap-6 opacity-0">
+                    <span className="contact-text font-normal">and I am from</span>
+                    <input
+                      type="text"
+                      name="country"
+                      placeholder="Country"
+                      required
+                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full md:w-auto md:min-w-[200px] transition-colors`}
                     />
-                  <ValidationError prefix="Email" field="email" errors={state.errors} />
-                </div>
-                {/* --- LINE 5: Message --- */}
-                <div className="contact-line flex flex-col md:flex-row md:items-baseline gap-6 opacity-0">
-                  <span className="contact-text font-normal whitespace-nowrap">In short,</span>
-                  <textarea 
-                    rows={1}
-                    name="message"
-                    placeholder="Type your message..." 
-                    required
-                    className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full resize-none overflow-hidden`}
-                    onInput={(e) => {
-                      e.target.style.height = 'auto';
-                      e.target.style.height = e.target.scrollHeight + 'px';
-                    }}
+                    <ValidationError prefix="Country" field="country" errors={state.errors} />
+                  </div>
+                  {/* --- LINE 3: Topic --- */}
+                  <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
+                    <span className="contact-text font-normal whitespace-nowrap">Let's connect about</span>
+                    <div className="flex flex-wrap gap-3">
+                      {['Collaboration', 'Potential Project', 'Networking'].map((item) => (
+                        <button
+                          key={item}
+                          type="button"
+                          onClick={() => setTopic(item)}
+                          style={topic === item ? { color: "#ffffff" } : { coalor: "#fb2c36" }}
+                          className={`contact-btn px-6 py-2 rounded-full border text-xl md:text-2xl transition-all duration-300
+                        ${topic === item
+                              ? 'bg-red-600 border-red-600 shadow-md shadow-red-300'
+                              : 'hover:bg-white/10 hover:border-white/40'
+                            }
+                          `}
+                        >
+                          {item}
+                        </button>
+                      ))}
+                      <input type="hidden" name="topic" value={topic} />
+                    </div>
+                    <ValidationError prefix="Topic" field="topic" errors={state.errors} />
+                  </div>
+                  {/* --- LINE 4: Contact Method --- */}
+                  <div className="contact-line flex flex-col md:flex-row md:items-baseline flex-wrap gap-6 opacity-0">
+                    <span className="contact-text font-normal">We can talk at</span>
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="name@website.com"
+                      required
+                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 flex-grow md:max-w-md transition-colors`}
                     />
-                  <ValidationError prefix="Message" field="message" errors={state.errors} />
-                </div>
-              </form>
-            </>
+                    <ValidationError prefix="Email" field="email" errors={state.errors} />
+                  </div>
+                  {/* --- LINE 5: Message --- */}
+                  <div className="contact-line flex flex-col md:flex-row md:items-baseline gap-6 opacity-0">
+                    <span className="contact-text font-normal whitespace-nowrap">In short,</span>
+                    <textarea
+                      rows={1}
+                      name="message"
+                      placeholder="Type your message..."
+                      required
+                      className={`contact-input ${inputTextClass} bg-transparent border-b border-white/20 focus:border-red-500 outline-none placeholder:text-inherit placeholder:opacity-30 px-2 py-1 w-full resize-none overflow-hidden`}
+                      onInput={(e) => {
+                        e.target.style.height = 'auto';
+                        e.target.style.height = e.target.scrollHeight + 'px';
+                      }}
+                    />
+                    <ValidationError prefix="Message" field="message" errors={state.errors} />
+                  </div>
+                </form>
+              </>
             )
           }
-        
+
         </div>
-              
+
 
         {/* Submit button pinned to bottom */}
         <div className="w-full absolute left-0 bottom-5 flex justify-center pointer-events-none">
-          <button 
+          <button
             ref={buttonRef}
             type="submit"
             className="contact-text group flex items-center gap-3 sm:gap-4 text-5xl sm:text-5xl md:text-7xl lg:text-9xl font-bold tracking-tighter opacity-0 mb-4 pointer-events-auto bg-transparent"
@@ -235,9 +235,9 @@ const Contact = () => {
 function ArrowIcon({ className }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className={className}>
-      <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M7 17L17 7M17 7H7M17 7V17" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   )
 }
 
-export default Contact;
+export default Contact; 

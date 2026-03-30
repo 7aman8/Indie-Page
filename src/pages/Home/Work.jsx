@@ -13,8 +13,9 @@ const projects = [
     hook: "shareboard.space",
     category: "Fullstack Development", 
     src: "/Mockups/Shareboard.webp", 
-    video: "/videos/Shareboard.mov",
+    video: "/videos/Shareboard.webm",
     color: "#e7000b", 
+    textColor: "black",
     link: "https://shareboard.space"
   },
   { 
@@ -23,9 +24,21 @@ const projects = [
     hook: "mahali.food",  
     category: "Fullstack Development", 
     src: "/Mockups/Mahali.webp", 
-    video: "/videos/Mahali.mov",
-    color: "#ea580c", 
+    video: "/videos/Mahali.webm",
+    color: "#ea580c",
+    textColor: "black",
     link: "https://mahali.food"
+  },
+  { 
+    id: "03", 
+    title: "Prolenses", 
+    hook: "prolenses.media",  
+    category: "Fullstack Development", 
+    src: "/Mockups/Prolenses.webp", 
+    video: "/videos/Prolenses.webm",
+    color: "#C01D30",
+    textColor: "white",
+    link: "https://prolenses.arjbuilds.dev"
   },
 ];
 
@@ -179,7 +192,7 @@ const Work = () => {
             className="absolute bottom-full left-0 mb-2 whitespace-nowrap opacity-0"
         >
             <div className="flex items-center gap-2 pl-2">
-                <span className="flex flex-row text-black font-gsans font-semibold text-md uppercase tracking-wider drop-shadow-md">
+                <span className={`flex flex-row text-${activeProject?.textColor} font-gsans font-semibold text-md uppercase tracking-wider drop-shadow-md`}>
                     {activeProject ? activeProject.hook : ""} <ArrowUpRight className="w-6 h-6 translate-y-0.4 text-red-700" />
                 </span>
             </div>
@@ -212,7 +225,7 @@ const Work = () => {
       </div>
 
       {/* The floating button to /indie */}
-      <div className="fixed top-10 right-10 z-40 pointer-events-auto border-b-2 border-zinc-700">
+      {/* <div className="fixed top-10 right-10 z-40 pointer-events-auto border-b-2 border-zinc-700">
           <Link
               to="/indie"
               className="group relative flex items-center gap-3 px-4 py-1 shadow-2xl transition-all duration-300"
@@ -221,7 +234,7 @@ const Work = () => {
                   Explore All Projects
               </span>
               
-              {/* Arrow */}
+
               <span className="relative flex items-center justify-center w-4 h-4 overflow-hidden">
                   <svg 
                       className="w-4 h-4 text-red-700 absolute transform transition-transform duration-300 group-hover:translate-x-full group-hover:opacity-0" 
@@ -237,7 +250,7 @@ const Work = () => {
                   </svg>
               </span>
           </Link>
-      </div>
+      </div> */}
 
     </div>
   );
