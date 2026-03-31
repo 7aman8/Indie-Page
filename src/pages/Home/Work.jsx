@@ -7,8 +7,19 @@ import { ArrowUpRight } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
+    { 
+      id: "01", 
+      title: "Prolenses", 
+      hook: "prolenses.media",  
+      category: "Fullstack Development", 
+      src: "/Mockups/Prolenses.webp", 
+      video: "/videos/Prolenses.webm",
+      color: "#C01D30",
+      textColor: "white",
+      link: "https://prolenses.arjbuilds.dev"
+    },
   { 
-    id: "01", 
+    id: "02", 
     title: "ShareBoard Colloaborative Platform", 
     hook: "shareboard.space",
     category: "Fullstack Development", 
@@ -19,7 +30,7 @@ const projects = [
     link: "https://shareboard.space"
   },
   { 
-    id: "02", 
+    id: "03", 
     title: "Mahali E-Commerce", 
     hook: "mahali.food",  
     category: "Fullstack Development", 
@@ -28,17 +39,6 @@ const projects = [
     color: "#ea580c",
     textColor: "black",
     link: "https://mahali.food"
-  },
-  { 
-    id: "03", 
-    title: "Prolenses", 
-    hook: "prolenses.media",  
-    category: "Fullstack Development", 
-    src: "/Mockups/Prolenses.webp", 
-    video: "/videos/Prolenses.webm",
-    color: "#C01D30",
-    textColor: "white",
-    link: "https://prolenses.arjbuilds.dev"
   },
 ];
 
