@@ -4,42 +4,65 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 
+// Mockup Imports
+import ProlensesImg from '../../assets/Mockups/Prolenses.webp';
+import HjrImg from '../../assets/Mockups/Hjr.webp';
+import ShareboardImg from '../../assets/Mockups/Shareboard.webp';
+import MahaliImg from '../../assets/Mockups/Mahali.webp';
+
+// Video Imports
+import ProlensesVid from '../../assets/Videos/Prolenses.webm';
+import HjrVid from '../../assets/Videos/Hjr.webm';
+import ShareboardVid from '../../assets/Videos/Shareboard.webm';
+import MahaliVid from '../../assets/Videos/Mahali.webm';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-    { 
-      id: "01", 
-      title: "Prolenses", 
-      hook: "prolenses.media",  
-      category: "Fullstack Development", 
-      src: "/Mockups/Prolenses.webp", 
-      video: "/videos/Prolenses.webm",
-      color: "#C01D30",
-      textColor: "white",
-      link: "https://prolenses.arjbuilds.dev"
+    {
+        id: "01",
+        title: "Prolenses",
+        hook: "prolenses.media",
+        category: "Fullstack Development",
+        src: ProlensesImg,
+        video: ProlensesVid,
+        color: "#C01D30",
+        textColor: "white",
+        link: "https://prolenses.arjbuilds.dev"
     },
-  { 
-    id: "02", 
-    title: "ShareBoard Colloaborative Platform", 
-    hook: "shareboard.space",
-    category: "Fullstack Development", 
-    src: "/Mockups/Shareboard.webp", 
-    video: "/videos/Shareboard.webm",
-    color: "#e7000b", 
-    textColor: "black",
-    link: "https://shareboard.space"
-  },
-  { 
-    id: "03", 
-    title: "Mahali E-Commerce", 
-    hook: "mahali.food",  
-    category: "Fullstack Development", 
-    src: "/Mockups/Mahali.webp", 
-    video: "/videos/Mahali.webm",
-    color: "#ea580c",
-    textColor: "black",
-    link: "https://mahali.food"
-  },
+    {
+        id: "02",
+        title: "Hjr-Mesbah Concept",
+        hook: "hjrmesbah.com",
+        category: "Concept & Design",
+        src: HjrImg,
+        video: HjrVid,
+        color: "#862533",
+        textColor: "black",
+        link: "https://hjr.arjbuilds.dev"
+    },
+    {
+        id: "03",
+        title: "ShareBoard Colloaborative Platform",
+        hook: "shareboard.space",
+        category: "Fullstack Development",
+        src: ShareboardImg,
+        video: ShareboardVid,
+        color: "#e7000b",
+        textColor: "black",
+        link: "https://shareboard.space"
+    },
+    {
+        id: "04",
+        title: "Mahali E-Commerce",
+        hook: "mahali.food",
+        category: "Fullstack Development",
+        src: MahaliImg,
+        video: MahaliVid,
+        color: "#ea580c",
+        textColor: "black",
+        link: "https://mahali.food"
+    },
 ];
 
 const Work = () => {
