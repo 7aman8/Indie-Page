@@ -23,6 +23,16 @@ This portfolio is built with modern web technologies to ensure a clean, fast, an
 
 Selected works featured on the site:
 
+### 📸 Prolenses
+* **Description:** Media and photography showcase platform.
+* **Role:** Fullstack Development.
+* **Highlight:** Visual-centric design for high-quality media.
+
+### 🎨 Hjr-Mesbah Concept
+* **Description:** Conceptual design and portfolio piece.
+* **Role:** Concept & Design.
+* **Highlight:** Innovative layout and design approach.
+
 ### 📋 ShareBoard
 * **Description:** A collaborative platform designed for seamless teamwork.
 * **Role:** Fullstack Development.

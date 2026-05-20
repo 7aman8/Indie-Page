@@ -6,13 +6,13 @@ import { ArrowUpRight } from 'lucide-react';
 
 // Mockup Imports
 import ProlensesImg from '../../assets/Mockups/Prolenses.webp';
-import HjrImg from '../../assets/Mockups/Hjr.webp';
+import GAImg from '../../assets/Mockups/GA.webp';
 import ShareboardImg from '../../assets/Mockups/Shareboard.webp';
 import MahaliImg from '../../assets/Mockups/Mahali.webp';
 
 // Video Imports
 import ProlensesVid from '../../assets/Videos/Prolenses.webm';
-import HjrVid from '../../assets/Videos/Hjr.webm';
+import GAVid from '../../assets/Videos/GA.webm';
 import ShareboardVid from '../../assets/Videos/Shareboard.webm';
 import MahaliVid from '../../assets/Videos/Mahali.webm';
 
@@ -32,14 +32,14 @@ const projects = [
     },
     {
         id: "02",
-        title: "Hjr-Mesbah Concept",
-        hook: "hjrmesbah.com",
+        title: "Goamplify Concept",
+        hook: "goamplify.agency",
         category: "Concept & Design",
-        src: HjrImg,
-        video: HjrVid,
-        color: "#862533",
-        textColor: "black",
-        link: "https://hjr.arjbuilds.dev"
+        src: GAImg,
+        video: GAVid,
+        color: "#1A4BFF",
+        textColor: "white",
+        link: "https://goamplify.arjbuilds.dev"
     },
     {
         id: "03",
