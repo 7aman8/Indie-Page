@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Home from './pages/Home/Home'
 import Indie from './pages/indie'
+import Bio from './pages/Bio'
 
 import Preloader from './components/Prelaoder'
 import CustomCursor from './components/CustomCursor'
@@ -69,6 +70,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/indie" element={<Indie />} />
+              <Route path="/tree" element={<Bio />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>

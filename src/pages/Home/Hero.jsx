@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'; 
+import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -26,9 +26,9 @@ function Hero() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()-+=[]{}|;:'<>,.?/~`";
   const scrambleText = (target, newText) => {
     let i = 0;
-    gsap.to({}, { 
+    gsap.to({}, {
       duration: 0.5,
-      onUpdate: function() {
+      onUpdate: function () {
         let scrambled = "";
         for (let j = 0; j < newText.length; j++) {
           if (j < i) scrambled += newText[j];
@@ -36,15 +36,15 @@ function Hero() {
         }
         if (target) target.textContent = scrambled;
       },
-      onComplete: function() {
+      onComplete: function () {
         if (target) target.textContent = newText;
       },
     });
 
     let progress = { value: 0 };
-    gsap.to(progress, { 
-      value: newText.length, 
-      duration: 0.5, 
+    gsap.to(progress, {
+      value: newText.length,
+      duration: 0.5,
       roundProps: "value",
       onUpdate: () => i = progress.value
     });
@@ -53,33 +53,33 @@ function Hero() {
   // --- PARALLAX SCROLL TRIGGER ---
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-        ScrollTrigger.create({
-            trigger: mainContainerRef.current,
-            start: "top top",
-            end: "bottom top",
-            pin: true, 
-            pinSpacing: false, 
-            scrub: true,
-        });
+      ScrollTrigger.create({
+        trigger: mainContainerRef.current,
+        start: "top top",
+        end: "bottom top",
+        pin: true,
+        pinSpacing: false,
+        scrub: true,
+      });
 
-        gsap.to(heroContentRef.current, {
-            scale: 0.95,
-            opacity: 0.5,
-            ease: "none",
-            scrollTrigger: {
-                trigger: mainContainerRef.current,
-                start: "top top",
-                end: "bottom top",
-                scrub: true
-            }
-        });
+      gsap.to(heroContentRef.current, {
+        scale: 0.95,
+        opacity: 0.5,
+        ease: "none",
+        scrollTrigger: {
+          trigger: mainContainerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true
+        }
+      });
 
     }, mainContainerRef);
     return () => ctx.revert();
   }, []);
 
 
-//Initial Hero Animations
+  //Initial Hero Animations
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(".hero-animate, p",
@@ -91,14 +91,14 @@ function Hero() {
   }, []);
 
   const scrollTo = (section) => {
-    gsap.to(window, { 
-      duration: 2, 
+    gsap.to(window, {
+      duration: 2,
       scrollTo: `#${section}`,
-      ease: "power4.inOut" 
+      ease: "power4.inOut"
     });
   };
 
-// Local Time Update
+  // Local Time Update
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
@@ -106,20 +106,20 @@ function Hero() {
         hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'Asia/Bahrain'
       }).toUpperCase());
     };
-    updateTime(); 
-    const intervalId = setInterval(updateTime, 60000); 
+    updateTime();
+    const intervalId = setInterval(updateTime, 60000);
     return () => clearInterval(intervalId);
   }, []);
 
-//   The nav magnetic effect
+  //   The nav magnetic effect
   useLayoutEffect(() => {
     const items = navRef.current.querySelectorAll(".magnetic");
 
-    const radius = 50;    
-    const strength = 0.35;  
+    const radius = 50;
+    const strength = 0.35;
 
     const handleMouseMove = (e) => {
-        items.forEach((el) => {
+      items.forEach((el) => {
         const rect = el.getBoundingClientRect();
         const cx = rect.left + rect.width / 2;
         const cy = rect.top + rect.height / 2;
@@ -129,26 +129,26 @@ function Hero() {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < radius) {
-            const pull = (1 - distance / radius) * strength;
+          const pull = (1 - distance / radius) * strength;
 
-            gsap.to(el, {
+          gsap.to(el, {
             x: dx * pull,
             y: dy * pull,
             duration: 0.3,
             // rotate: Math.atan2(dy, dx) * 57.2958, --> clunky roration
             rotate: 5 * pull,
             ease: "power3.out",
-            });
+          });
         } else {
-            gsap.to(el, {
+          gsap.to(el, {
             x: 0,
             y: 0,
             rotate: 0,
             duration: 0.6,
             ease: "elastic.out(1, 0.4)",
-            });
+          });
         }
-        });
+      });
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -168,26 +168,26 @@ function Hero() {
 
       <div className="w-full h-full flex flex-col lg:block">
 
-    {/* Images */}
+        {/* Images */}
         <div ref={imageContainerRef} className="relative z-10 w-64 h-80 mt-10 mx-auto md:w-150 md:h-auto lg:absolute lg:top-10 lg:left-32 lg:m-0 lg:w-150 lg:h-auto">
-          <img 
-            src="/Money.webp" 
+          <img
+            src="/Money.webp"
             alt="Talking Money"
             className={`absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto ${hovered ? "opacity-100" : "opacity-0"} transition-opacity duration-500 z-20`}
           />
-          <img 
-            src="/Smiling.webp" 
+          <img
+            src="/Smiling.webp"
             alt="Smiling"
             className={`absolute inset-0 top-3 w-full h-full object-cover md:w-150 md:h-auto opacity-0 transition-opacity duration-500 hover:opacity-100 z-20`}
           />
-          <img 
-            src="/Talking.webp" 
+          <img
+            src="/Talking.webp"
             alt="Talking"
             className="absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto opacity-100 transition-opacity duration-500 hover:opacity-0 z-10"
           />
 
-        {/* Old Images */}
-        {/* <div ref={imageContainerRef} className="relative z-10 w-64 h-80 mt-10 mx-auto md:w-150 md:h-auto lg:absolute lg:top-10 lg:left-32 lg:m-0 lg:w-150 lg:h-auto">
+          {/* Old Images */}
+          {/* <div ref={imageContainerRef} className="relative z-10 w-64 h-80 mt-10 mx-auto md:w-150 md:h-auto lg:absolute lg:top-10 lg:left-32 lg:m-0 lg:w-150 lg:h-auto">
           <img 
             src="/Talking.webp" 
             alt="Talking"
@@ -204,11 +204,11 @@ function Hero() {
             className="absolute inset-0 w-full h-full object-cover md:w-150 md:h-auto opacity-100 transition-opacity duration-500 hover:opacity-0 z-10"
           />
         </div> */}
-          
+
         </div>
 
 
-    {/* Hero Content */}
+        {/* Hero Content */}
         <div ref={heroContentRef} className="relative z-20 flex flex-col items-center gap-6 mt-10 lg:absolute lg:top-1/2 lg:left-1/2 lg:ml-20 lg:-translate-y-1/2 lg:items-start lg:gap-10 lg:mt-0">
           <div className="hero-animate">
             <DraggableLayer />
@@ -218,7 +218,7 @@ function Hero() {
             <p>I build <span className='italic font-[Georgia]'>clean</span>, <span className='italic font-[Georgia]'>modern</span>, and <span className='italic font-[Georgia]'>engaging</span> web apps.</p>
           </div>
           <button className='hero-animate flex flex-row gap-2 border-b-3 border-red-700 text-red-700 text-3xl md:text-4xl font-bold font-gilroy w-fit pr-3 text-start items-center'>
-            <span onClick={() => scrollTo("contact")} ref={businessRef} onMouseEnter={() => {scrambleText(businessRef.current, "LET'S TALK BUSINESS."); setHovered(true)}} onMouseLeave={() =>{ businessRef.current.textContent = "LET'S TALK BUSINESS."; setHovered(false)}}>
+            <span onClick={() => scrollTo("contact")} ref={businessRef} onMouseEnter={() => { scrambleText(businessRef.current, "LET'S TALK BUSINESS."); setHovered(true) }} onMouseLeave={() => { businessRef.current.textContent = "LET'S TALK BUSINESS."; setHovered(false) }}>
               Let's Talk Business.
             </span> <MessageIcon className="w-6 md:w-8" />
           </button>
@@ -226,21 +226,21 @@ function Hero() {
 
       </div>
 
-    {/* Bottom Bar */}
+      {/* Bottom Bar */}
       <div ref={bottomBarRef} className="w-full p-6 flex justify-between items-end text-sm font-geist uppercase lg:absolute lg:-bottom-3 z-50">
         {/* Location and Time */}
         <div className="whitespace-nowrap space-x-1">
           <span className='text-red-600 font-bold'>
             <a href="https://en.wikipedia.org/wiki/Bahrain" target='_blank' >Bahrain</a>
-          </span> 
+          </span>
           <span>{localTime}</span>
         </div>
 
         {/* Social Links */}
         <div className="flex md:absolute md:justify-end md:mx-auto md:right-10 space-x-2 gap-1 text-black">
-          <a 
-            ref={instagramRef} 
-            href="https://www.instagram.com/arj08._/" 
+          <a
+            ref={instagramRef}
+            href="https://www.instagram.com/arjbuilds/"
             target='_blank'
             className="hover:text-red-950 hover:font-semibold transition"
             onMouseEnter={() => scrambleText(instagramRef.current, 'INSTAGRAM')}
@@ -250,21 +250,21 @@ function Hero() {
           </a>
 
           <span className='opacity-50'>/</span>
-          <a 
-            ref={xRef} 
-            href="https://x.com/ArjBuilds/" 
+          <a
+            ref={xRef}
+            href="https://x.com/ArjBuilds/"
             target='_blank'
             className="hover:text-red-950 hover:font-semibold transition"
             onMouseEnter={() => scrambleText(xRef.current, 'X')}
             onMouseLeave={() => xRef.current.textContent = 'X'}
           >
             X
-          </a> 
+          </a>
           <span className='opacity-50'>/</span>
 
-          <a 
-            ref={linkedinRef} 
-            href="https://www.linkedin.com/in/arj11/" 
+          <a
+            ref={linkedinRef}
+            href="https://www.linkedin.com/in/arj11/"
             target='_blank'
             className="hover:text-red-950 hover:font-semibold transition"
             onMouseEnter={() => scrambleText(linkedinRef.current, 'LINKEDIN')}
@@ -308,7 +308,7 @@ const DraggableLayer = () => {
           onPointerDown={() => { controls.stop(); setHasInteracted(true); }}
           animate={hasInteracted ? {} : { x: [0, 80, 0], y: [0, 20, 0], rotate: [0, 3, 0] }}
           transition={{ duration: 1.2, delay: 5, ease: "easeInOut", times: [0, 0.5, 1], repeat: 0 }}
-          onDragStart={() => {setHasInteracted(true);}}
+          onDragStart={() => { setHasInteracted(true); }}
           className="relative z-10"
         >
           <div className="relative border-2 bg-white border-[#008ef0] p-4 w-fit">
