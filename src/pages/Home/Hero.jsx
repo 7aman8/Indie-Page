@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useLayoutEffect } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion, useAnimation } from 'framer-motion';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -214,8 +215,8 @@ function Hero() {
             <DraggableLayer />
           </div>
           <div className="hero-text-p text-center lg:text-left text-lg opacity-50 px-6 lg:px-0">
-            <p>I'm Abdulrahman Janahi.</p>
-            <p>I build <span className='italic font-[Georgia]'>clean</span>, <span className='italic font-[Georgia]'>modern</span>, and <span className='italic font-[Georgia]'>engaging</span> web apps.</p>
+            <p>I'm Abdulrahman Janahi — Web Designer in Bahrain & the GCC.</p>
+            <p>I build <span className='italic font-[Georgia]'>clean</span>, <span className='italic font-[Georgia]'>modern</span>, and <span className='italic font-[Georgia]'>high-end</span> websites.</p>
           </div>
           <button className='hero-animate flex flex-row gap-2 border-b-3 border-red-700 text-red-700 text-3xl md:text-4xl font-bold font-gilroy w-fit pr-3 text-start items-center'>
             <span onClick={() => scrollTo("contact")} ref={businessRef} onMouseEnter={() => { scrambleText(businessRef.current, "LET'S TALK BUSINESS."); setHovered(true) }} onMouseLeave={() => { businessRef.current.textContent = "LET'S TALK BUSINESS."; setHovered(false) }}>

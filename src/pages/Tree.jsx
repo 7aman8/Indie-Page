@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import gsap from 'gsap';
+import SEO from '@/components/SEO';
 
 // Mockup Imports
 import ProlensesImg from '../assets/Mockups/Prolenses.webp';
@@ -157,7 +158,7 @@ function ContactForm() {
   );
 }
 
-const Bio = () => {
+const Tree = () => {
   const [activeTab, setActiveTab] = useState('about');
   const [localTime, setLocalTime] = useState('');
   const instagramRef = useRef(null);
@@ -207,6 +208,11 @@ const Bio = () => {
 
   return (
     <div className="min-h-screen bg-white text-black flex flex-col overflow-x-hidden relative font-gsans w-full mx-auto">
+      <SEO 
+        title="Links & Contact Tree | Abdulrahman Janahi"
+        description="Connect directly with Abdulrahman Janahi (ARJ), professional web designer and developer in Bahrain. Request a branding or development project proposal."
+        path="/tree"
+      />
 
       {/* Header Navigation (Like Hero.jsx but acts as tabs) */}
       <nav className="flex flex-row font-gilroy font-bold gap-6 text-2xl md:text-3xl lg:text-4xl z-50 p-6 pt-10 pb-0">
@@ -347,4 +353,4 @@ const Bio = () => {
   );
 };
 
-export default Bio;
+export default Tree;

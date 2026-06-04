@@ -1,9 +1,8 @@
-import React, { useRef, useLayoutEffect, useEffect } from 'react';
+import React, { useRef, useLayoutEffect } from 'react';
 import gsap from 'gsap';
 
 const SuccessMessage = ({ onReset }) => {
   const containerRef = useRef(null);
-  const marqueeRef = useRef(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {

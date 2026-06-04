@@ -8,11 +8,18 @@ import Footer from "./Footer";
 import StackingFlow from '@/components/StackingCards';
 
 
+import SEO from '@/components/SEO';
+
 function Home() {
 
 
   return (
     <div className='min-h-screen'>
+        <SEO 
+          title="Abdulrahman Janahi | Web Designer & Developer in Bahrain & GCC"
+          description="Abdulrahman Janahi (ARJ) is a creative freelance web designer and developer building clean, modern, and engaging web apps in Bahrain and the GCC region."
+          path="/"
+        />
         <Hero />
 
         <div className="bg-zinc-950 text-white relative z-20">

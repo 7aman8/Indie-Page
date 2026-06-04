@@ -155,7 +155,7 @@ const Work = () => {
         className="hidden md:flex h-full w-fit"
         style={{ width: `${projects.length * 100}vw` }}
       >
-        {projects.map((project, i) => (
+        {projects.map((project) => (
             <a 
                 key={project.id}
                 href={project.link}
@@ -178,7 +178,7 @@ const Work = () => {
 
       {/* --- MOBILE VERTICAL STACK --- */}
       <div className="md:hidden flex flex-col w-full">
-        {projects.map((project, i) => (
+        {projects.map((project) => (
             <a 
                 key={project.id}
                 href={project.link}

@@ -40,7 +40,6 @@ const Preloader = ({ onComplete }) => {
         ease: "power2.in"
       });
 
-      const startPath = "M0,0 L100,0 L100,100 Q50,150 0,100 Z"; 
       const endPath = "M0,0 L100,0 L100,0 Q50,0 0,0 Z";
 
       tl.to(svgRef.current, {

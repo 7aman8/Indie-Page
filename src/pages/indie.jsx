@@ -1,5 +1,6 @@
 // import Profile from "/Profile.jpeg";
 import Profile from "/favicon.png";
+import SEO from '@/components/SEO';
 
 import Mahali from "../assets/Logo/Mahali.png";
 import Wordly from "../assets/Logo/Wordly.png";
@@ -61,6 +62,11 @@ function Indie(){
 
     return(
         <div className="flex flex-col sm:flex-row gap-10 text-[#2b2b28] bg-[#F2EFE7]/70 min-h-screen w-full overflow-x-hidden">
+            <SEO 
+              title="Indie Projects & Startups | Abdulrahman Janahi"
+              description="Explore the portfolio of startups and open source tools built by Abdulrahman Janahi (ARJ), a web designer and developer from Bahrain. Featuring Mahali, Wordly, Promptly, and more."
+              path="/indie"
+            />
 
             {/* Main page with picture */}
             <div className=" sm:translate-x-20 sm:translate-y-20

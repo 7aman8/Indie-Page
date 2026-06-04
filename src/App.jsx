@@ -6,9 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Home from './pages/Home/Home'
 import Indie from './pages/indie'
-import Bio from './pages/Bio'
+import Tree from './pages/Tree'
 
-import Preloader from './components/Prelaoder'
+import Preloader from './components/Preloader'
 import CustomCursor from './components/CustomCursor'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -70,7 +70,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/indie" element={<Indie />} />
-              <Route path="/tree" element={<Bio />} />
+              <Route path="/tree" element={<Tree />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </div>
