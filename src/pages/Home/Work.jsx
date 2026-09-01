@@ -5,12 +5,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight } from 'lucide-react';
 
 // Mockup Imports
+import KFMImg from '../../assets/Mockups/KFM.webp';
 import ProlensesImg from '../../assets/Mockups/Prolenses.webp';
 import GAImg from '../../assets/Mockups/GA.webp';
 import ShareboardImg from '../../assets/Mockups/Shareboard.webp';
 import MahaliImg from '../../assets/Mockups/Mahali.webp';
 
 // Video Imports
+import KFMVid from '../../assets/Videos/KFM.webm';
 import ProlensesVid from '../../assets/Videos/Prolenses.webm';
 import GAVid from '../../assets/Videos/GA.webm';
 import ShareboardVid from '../../assets/Videos/Shareboard.webm';
@@ -21,9 +23,20 @@ gsap.registerPlugin(ScrollTrigger);
 const projects = [
     {
         id: "01",
+        title: "Khosh Fkra Media",
+        hook: "KFM",
+        category: "Concept & Design",
+        src: KFMImg,
+        video: KFMVid,
+        color: "#D1B3FD",
+        textColor: "white",
+        link: "https://kfm.arjbuilds.dev"
+    },
+    {
+        id: "02",
         title: "Prolenses",
         hook: "prolenses.media",
-        category: "Fullstack Development",
+        category: "Website Design",
         src: ProlensesImg,
         video: ProlensesVid,
         color: "#C01D30",
@@ -31,7 +44,7 @@ const projects = [
         link: "https://prolenses.arjbuilds.dev"
     },
     {
-        id: "02",
+        id: "03",
         title: "Goamplify Concept",
         hook: "goamplify.agency",
         category: "Concept & Design",
@@ -42,7 +55,7 @@ const projects = [
         link: "https://goamplify.arjbuilds.dev"
     },
     {
-        id: "03",
+        id: "04",
         title: "ShareBoard Colloaborative Platform",
         hook: "shareboard.space",
         category: "Fullstack Development",
@@ -53,7 +66,7 @@ const projects = [
         link: "https://shareboard.space"
     },
     {
-        id: "04",
+        id: "05",
         title: "Mahali E-Commerce",
         hook: "mahali.food",
         category: "Fullstack Development",

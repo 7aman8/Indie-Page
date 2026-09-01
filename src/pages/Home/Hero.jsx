@@ -265,7 +265,7 @@ function Hero() {
 
           <a
             ref={linkedinRef}
-            href="https://www.linkedin.com/in/arj11/"
+            href="https://www.linkedin.com/in/arjbuilds/"
             target='_blank'
             className="hover:text-red-950 hover:font-semibold transition"
             onMouseEnter={() => scrambleText(linkedinRef.current, 'LINKEDIN')}
